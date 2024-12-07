@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ForgotPasswordScreen, HomeScreen, LogginScreen, RecoveryPasswordScreen, RegisterScreen } from './Screens'
+import { ProtectedRoute } from './Componets'
 
 
 const App = () => {
@@ -10,10 +11,11 @@ const App = () => {
                 <Route path='/' element={<LogginScreen />} />
                 <Route path='/login' element={<LogginScreen />} />
                 <Route path='/register' element={<RegisterScreen />} />
-                <Route path='/home' element={<HomeScreen />} />
                 <Route path='/forgot-password' element={<ForgotPasswordScreen />} />
                 <Route path='/auth/recovery-password/:reset_token' element={<RecoveryPasswordScreen />} />
-                <Route path='/home' element={<HomeScreen />} />
+                <Route element={<ProtectedRoute />}>
+                    <Route path='/home' element={<HomeScreen />} />
+                </Route>
             </Routes>
         </div>
     )

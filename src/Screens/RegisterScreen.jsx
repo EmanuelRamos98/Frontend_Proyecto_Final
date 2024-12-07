@@ -1,17 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from '../Hooks'
+import { Link, useNavigate } from 'react-router-dom'
+import Forms from '../Componets/Forms'
 
 const RegisterScreen = () => {
     const navigate = useNavigate()
-    const { formState, handleChange } = useForm({
-        name: '',
-        email: '',
-        password: ''
-    })
 
-    const handleRegister = async (evento) => {
-        evento.preventDefault()
+    const actionRegister = async (formState) => {
         const response = await fetch('http://localhost:3030/api/auth/register', {
             method: 'POST',
             headers: {
@@ -26,46 +20,61 @@ const RegisterScreen = () => {
         }
     }
 
+    const form_fields = [
+        {
+            label_text: 'Ingresa tu Nombre',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                name: 'name',
+                id: 'name',
+                placeholder: 'Cosme Fulanito',
+                type: 'text'
+            }
+        },
+        {
+            label_text: 'Ingresa tu email',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                name: 'email',
+                id: 'email',
+                placeholder: 'cosmefulanito@gmail.com',
+                type: 'email'
+            }
+        },
+        {
+            label_text: 'Ingresa nueva contraseña:',
+            field_component: 'INPUT',
+            field_container_props: {
+                className: 'row_field'
+            },
+            field_data_props: {
+                name: 'password',
+                id: 'password',
+                placeholder: '',
+                type: 'password'
+            }
+        }
+    ]
+    const initial_state_form = {
+        name: '',
+        email: '',
+        password: ''
+    }
+
 
     return (
         <div>
             <h2>Registrate</h2>
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label>Ingresa tu username:</label>
-                    <input
-                        name='name'
-                        id='name'
-                        placeholder='cosme fulanito'
-                        type='text'
-                        onChange={handleChange}
-                        value={formState.name}
-                    />
-                </div>
-                <div>
-                    <label>Ingresa tu email:</label>
-                    <input
-                        name='email'
-                        id='email'
-                        placeholder='cosmefulanito@gmail.com'
-                        type='email'
-                        onChange={handleChange}
-                        value={formState.email}
-                    />
-                </div>
-                <div>
-                    <label>Ingresa tu password:</label>
-                    <input
-                        name='password'
-                        id='password'
-                        placeholder='**********'
-                        type='password'
-                        onChange={handleChange}
-                        value={formState.password}
-                    />
-                </div>
-                <button type='submit'>Registrarse</button>
-            </form>
+            <Forms action={actionRegister} form_fields={form_fields} initial_sate_form={initial_state_form}>
+                <button type='submit'>Register</button>
+                <Link to={'/'}>Iniciar session</Link>
+            </Forms>
         </div>
     )
 }
