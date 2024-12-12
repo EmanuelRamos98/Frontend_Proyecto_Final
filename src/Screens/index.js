@@ -1,3 +1,4 @@
+import ChatScreen from "./ChatScreen";
 import ForgotPasswordScreen from "./ForgotPasswordScreen";
 import HomeScreen from "./HomeScreen";
 import LogginScreen from "./LogginScreen";
@@ -6,5 +7,4 @@ import RegisterScreen from "./RegisterScreen";
 
 
 
-
-export { LogginScreen, RegisterScreen, HomeScreen, ForgotPasswordScreen, RecoveryPasswordScreen }
+export { LogginScreen, RegisterScreen, HomeScreen, ForgotPasswordScreen, RecoveryPasswordScreen, ChatScreen }

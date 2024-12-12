@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { ForgotPasswordScreen, HomeScreen, LogginScreen, RecoveryPasswordScreen, RegisterScreen } from './Screens'
+import { ChatScreen, ForgotPasswordScreen, HomeScreen, LogginScreen, RecoveryPasswordScreen, RegisterScreen } from './Screens'
 import { ProtectedRoute } from './Componets'
 
 
@@ -15,6 +15,7 @@ const App = () => {
                 <Route path='/auth/recovery-password/:reset_token' element={<RecoveryPasswordScreen />} />
                 <Route element={<ProtectedRoute />}>
                     <Route path='/home' element={<HomeScreen />} />
+                    <Route path='/chat/:receiverId' element={<ChatScreen />} />
                 </Route>
             </Routes>
         </div>

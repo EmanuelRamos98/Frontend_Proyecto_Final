@@ -4,7 +4,7 @@ import Forms from '../Componets/Forms'
 
 const ForgotPasswordScreen = () => {
     const actionForgot = async (formState) => {
-        const respose = await fetch('http://localhost:3030/api/auth/forgot-password', {
+        const respose = await fetch('http://localhost:3000/api/auth/forgot-password', {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json'
@@ -12,7 +12,7 @@ const ForgotPasswordScreen = () => {
             body: JSON.stringify(formState)
         })
         const data = await respose.json()
-        console.log(data);
+        return data
     }
 
     const form_fields = [

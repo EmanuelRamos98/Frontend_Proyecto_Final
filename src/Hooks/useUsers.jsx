@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAuthenticatedHeaders } from "../Utils/feching"
+import { authenticatedUser, getAuthenticatedHeaders } from "../Utils/feching"
 
 const useUsers = () => {
     const [user_state, setUserState] = useState([])
@@ -7,19 +7,21 @@ const useUsers = () => {
     const [user_error_state, setUserErrorState] = useState(null)
 
     const obtenerUsers = async () => {
-        const response = await fetch('http://localhost:3030/api/auth/users', {
+        const response = await fetch('http://localhost:3000/api/auth/users', {
             method: 'GET',
             headers: getAuthenticatedHeaders()
         })
         const data = await response.json()
         if (!data.ok) {
-            setUserErrorState(data.error)
+            setUserErrorState(data.message)
             setUserLoadingState(false)
             return
-        } else {
-            setUserState(data.payload.users)            
-            setUserLoadingState(false)
         }
+        const userAuthenticated = authenticatedUser()
+        const users = data.payload.users
+        const filter = users.filter(user => user.id !== userAuthenticated.user_id)
+        setUserState(filter)
+        setUserLoadingState(false)
     }
     useEffect(() => {
         obtenerUsers()

@@ -6,7 +6,7 @@ const RegisterScreen = () => {
     const navigate = useNavigate()
 
     const actionRegister = async (formState) => {
-        const response = await fetch('http://localhost:3030/api/auth/register', {
+        const response = await fetch('http://localhost:3000/api/auth/register', {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json'
@@ -14,10 +14,10 @@ const RegisterScreen = () => {
             body: JSON.stringify(formState)
         })
         const data = await response.json()
-        console.log(data)
         if (data.ok) {
             navigate('/')
         }
+        return data
     }
 
     const form_fields = [

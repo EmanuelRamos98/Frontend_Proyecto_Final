@@ -1,12 +1,14 @@
 import React from 'react'
-import { useForm } from '../Hooks'
+import { useErrors, useForm } from '../Hooks'
 
 const Forms = ({ children, action, form_fields, initial_sate_form }) => {
     const { formState, handleChange } = useForm(initial_sate_form)
+    const { errors, handleErrors } = useErrors()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        action(formState)
+        const data = await action(formState)
+        handleErrors(data)
     }
 
     return (
@@ -16,6 +18,7 @@ const Forms = ({ children, action, form_fields, initial_sate_form }) => {
                 handleChange={handleChange}
                 form_state={formState}
             />
+            {errors && <span>{errors}</span>}
             {children}
         </form>
     )

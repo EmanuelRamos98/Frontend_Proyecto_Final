@@ -5,7 +5,7 @@ import Forms from '../Componets/Forms'
 const LogginScreen = () => {
     const navigate = useNavigate()
     const actionLoggin = async (formState) => {
-        const response = await fetch('http://localhost:3030/api/auth/login', {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json'
@@ -13,14 +13,13 @@ const LogginScreen = () => {
             body: JSON.stringify(formState)
         })
         const data = await response.json()
-
-        if (!data.ok) {
-            
-        }
-        else {
+        if (data.ok) {
             sessionStorage.setItem('access-token', data.payload.accesToken)
             navigate('/home')
+        } else {
+            console.log('fallo login');
         }
+        return data
     }
     const form_fields = [
         {

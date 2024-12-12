@@ -7,7 +7,7 @@ const RecoveryPasswordScreen = () => {
     const { reset_token } = useParams()
 
     const actionRecoveryPassword = async (formState) => {
-        const response = await fetch(`http://localhost:3030/api/auth/recovery-password/${reset_token}`, {
+        const response = await fetch(`http://localhost:3000/api/auth/recovery-password/${reset_token}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
@@ -17,11 +17,11 @@ const RecoveryPasswordScreen = () => {
             })
         })
         const data = await response.json()
-        console.log(data);
 
         if (data.ok) {
             navigate('/')
         }
+        return data
     }
 
     const form_fields = [

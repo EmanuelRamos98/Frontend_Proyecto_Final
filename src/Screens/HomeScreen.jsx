@@ -1,47 +1,45 @@
-import React from 'react'
-import { useUsers } from '../Hooks'
+import React, { useState } from 'react'
+import { GetContacts } from '../Componets'
+import { Link } from 'react-router-dom'
 
 
 const HomeScreen = () => {
-    const { user_state, user_Loading_state, user_error_state } = useUsers()
+    const { contactos, loading_contactos, error_contactos } = GetContacts()
 
     return (
         <div>
             <h1>Warap</h1>
+            {
+                loading_contactos
+                    ? <span>Cargando..</span>
+                    : (
+                        error_contactos
+                            ? <span>{error_contactos}</span>
+                            : <div>
+                                {
+                                    contactos.map(
+                                        (contacto) => {
+                                            return (
+                                                <Contacto contacto={contacto} key={contacto._id}/>
+                                            )
+                                        }
+                                    )
+                                }
+                            </div>
+                    )
+            }
+        </div>
+    )
+}
 
-            <div>
-                <h2>Usuarios</h2>
-                {
-                    user_Loading_state
-                        ? <span>Cargando</span>
-                        : (
-                            user_error_state
-                                ? <span>{user_error_state}</span>
-                                : <div>
-                                    {
-                                        user_state.map(
-                                            (user) => {
-                                                return (
-                                                    <User user={user} key={user.id} />
-                                                )
-                                            }
-                                        )
-                                    }
-                                </div>
-                        )
-                }
-            </div>
+const Contacto = ({ contacto }) => {
+    return (
+        <div key={contacto._id}>
+            <h2>{contacto.name}</h2>
+            <Link to={`/chat/${contacto._id}`}>Ver</Link>
         </div>
     )
 }
 
 export default HomeScreen
 
-const User = ({ user }) => {
-    return (
-        <div key={user.id}>
-            <h2>{user.name}</h2>
-            <p>{user.estado}</p>
-        </div>
-    )
-}
