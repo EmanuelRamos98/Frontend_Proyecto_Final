@@ -1,35 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import { getAuthenticatedHeaders } from '../Utils/feching'
+import React, { useState } from 'react'
+import { useContact } from '../Hooks'
+import { Link } from 'react-router-dom'
 
 const GetContacts = () => {
-    const [contactos, setContactos] = useState([])
-    const [loading_contactos, setLoadingContactos] = useState(true)
-    const [error_contactos, setErrorContatos] = useState(null)
+    const { contactos, loading_contactos, error_contactos } = useContact()
+    const [buscar, setBuscar] = useState('')
 
-
-    const obtenerContactos = async () => {
-        const response = await fetch('http://localhost:3000/api/contacts/', {
-            method: 'GET',
-            headers: getAuthenticatedHeaders()
-        })
-        const data = await response.json()
-        if (!data.ok) {
-            setErrorContatos(data.message)
-            setLoadingContactos(false)
-            return
-        }
-        setContactos(data.payload.contacts)
-        setLoadingContactos(false)
+    const handleChange = (event) => {
+        setBuscar(event.target.value)
     }
-    useEffect(()=>{
-        obtenerContactos()
-    },[])
 
-    return {
-        contactos,
-        loading_contactos,
-        error_contactos
-    }
+    const bucarContact = contactos.filter(contacto =>
+        contacto.name.toLowerCase().includes(buscar.toLocaleLowerCase())
+    )
+
+    return (
+        <div>
+            <input type="text"
+                placeholder='buscar...'
+                value={buscar}
+                onChange={handleChange}
+            />
+
+            {
+                loading_contactos
+                    ? <span>Cargando..</span>
+                    : (
+                        error_contactos
+                            ? <span>{error_contactos}</span>
+                            : <div>
+                                {
+                                    bucarContact.map(
+                                        (contacto) => {
+                                            return (
+                                                <Contacto contacto={contacto} key={contacto._id} />
+                                            )
+                                        }
+                                    )
+                                }
+                            </div>
+                    )
+            }
+        </div>
+    )
+}
+
+
+const Contacto = ({ contacto }) => {
+    return (
+        <div key={contacto._id}>
+            <h2>{contacto.name}</h2>
+            <Link to={`/chat/${contacto._id}`}>Ver</Link>
+        </div>
+    )
 }
 
 export default GetContacts
+
+
+

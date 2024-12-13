@@ -1,42 +1,27 @@
 import React, { useState } from 'react'
-import { GetContacts } from '../Componets'
-import { Link } from 'react-router-dom'
+import { GetContacts, MostrarUsers } from '../Componets'
 
 
 const HomeScreen = () => {
-    const { contactos, loading_contactos, error_contactos } = GetContacts()
+    const [mostrar, setMostrar] = useState(false)
 
+    const handleCkick = () => {
+        setMostrar((prevState) => !prevState)
+    }
+
+    
     return (
         <div>
             <h1>Warap</h1>
+                <GetContacts />
+            <button onClick={handleCkick}>Buscar contactos</button>
             {
-                loading_contactos
-                    ? <span>Cargando..</span>
-                    : (
-                        error_contactos
-                            ? <span>{error_contactos}</span>
-                            : <div>
-                                {
-                                    contactos.map(
-                                        (contacto) => {
-                                            return (
-                                                <Contacto contacto={contacto} key={contacto._id}/>
-                                            )
-                                        }
-                                    )
-                                }
-                            </div>
-                    )
+                mostrar
+                &&
+                <span>
+                    <MostrarUsers />
+                </span>
             }
-        </div>
-    )
-}
-
-const Contacto = ({ contacto }) => {
-    return (
-        <div key={contacto._id}>
-            <h2>{contacto.name}</h2>
-            <Link to={`/chat/${contacto._id}`}>Ver</Link>
         </div>
     )
 }

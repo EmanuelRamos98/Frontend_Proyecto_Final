@@ -1,3 +1,4 @@
+import useContact from "./useContact";
 import useErrors from "./useErrors";
 import useForm from "./useForm";
 import useMessages from "./useMessages";
@@ -7,4 +8,4 @@ import useUsers from "./useUsers";
 
 
 
-export { useForm, useUsers, useErrors, useMessages, useSendMessage }
+export { useForm, useUsers, useErrors, useMessages, useSendMessage, useContact }

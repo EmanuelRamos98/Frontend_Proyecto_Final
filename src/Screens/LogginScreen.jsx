@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Forms from '../Componets/Forms'
+import { AuthContext } from '../Context/AuthContentx'
+
 
 const LogginScreen = () => {
-    const navigate = useNavigate()
+    const { login } = useContext(AuthContext)
+    const nav = useNavigate()
     const actionLoggin = async (formState) => {
         const response = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: {
-                'content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(formState)
         })
         const data = await response.json()
-        if (data.ok) {
-            sessionStorage.setItem('access-token', data.payload.accesToken)
-            navigate('/home')
-        } else {
+        console.log(data);
+        
+        if (!data.ok) {
             console.log('fallo login');
+        } else {
+            login(data.payload.accesToken)
+            nav('/home')
         }
         return data
     }
+
     const form_fields = [
         {
             label_text: 'Ingresa tu email',
