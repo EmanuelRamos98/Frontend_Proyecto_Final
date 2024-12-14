@@ -4,6 +4,15 @@ import MostrarUsers from "./MostrarUsers";
 import GetContacts from "./GetContacts";
 import Chat from "./Chat";
 import EnviarMessage from "./EnviarMessage";
+import Navbar from "./Navbar";
 
 
-export { ProtectedRoute, Form, MostrarUsers, GetContacts, Chat, EnviarMessage}
+
+export { 
+    ProtectedRoute, 
+    Form, 
+    MostrarUsers, 
+    GetContacts, 
+    Chat, 
+    EnviarMessage,Navbar
+}

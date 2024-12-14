@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { GetContacts, MostrarUsers } from '../Componets'
+import { GetContacts, MostrarUsers, Navbar } from '../Componets'
+import { useParams } from 'react-router-dom'
 
 
 const HomeScreen = () => {
@@ -9,11 +10,12 @@ const HomeScreen = () => {
         setMostrar((prevState) => !prevState)
     }
 
-    
+
     return (
         <div>
             <h1>Warap</h1>
-                <GetContacts />
+            <Navbar/>
+            <GetContacts />
             <button onClick={handleCkick}>Buscar contactos</button>
             {
                 mostrar

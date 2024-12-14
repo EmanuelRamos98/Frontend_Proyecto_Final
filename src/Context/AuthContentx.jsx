@@ -4,10 +4,12 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [is_authenticated_state, setIsAuthenticatedState] = useState(false)
+    const [is_authenticated_checked, setIsAuthenticatedCheked] = useState(false)
 
     useEffect(() => {
         const token = sessionStorage.getItem('access-token');
         setIsAuthenticatedState(Boolean(token))
+        setIsAuthenticatedCheked(true)
     }, [])
 
     const login = (token) => {
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             value={
                 {
                     is_authenticated_state,
+                    is_authenticated_checked,
                     login,
                     logout
                 }

@@ -4,8 +4,11 @@ import { AuthContext } from "../Context/AuthContentx"
 
 
 const ProtectedRoute = () => {
-    const { is_authenticated_state } = useContext(AuthContext)
+    const { is_authenticated_state, is_authenticated_checked } = useContext(AuthContext)
 
+    if (!is_authenticated_checked) {
+        return <div>Cargando...</div>
+    }
     return (
         <>
             {

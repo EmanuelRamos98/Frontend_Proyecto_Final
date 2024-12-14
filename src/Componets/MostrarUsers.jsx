@@ -5,6 +5,7 @@ import { getAuthenticatedHeaders } from '../Utils/feching'
 const MostrarUsers = () => {
     const { user_state, user_Loading_state, user_error_state } = useUsers()
     const [buscar, setBuscar] = useState('')
+    
     const handleChange = (event) => {
         setBuscar(event.target.value)
     }

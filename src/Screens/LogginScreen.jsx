@@ -17,13 +17,17 @@ const LogginScreen = () => {
         })
         const data = await response.json()
         console.log(data);
-        
+
         if (!data.ok) {
-            console.log('fallo login');
-        } else {
-            login(data.payload.accesToken)
-            nav('/home')
+            console.log(data.message)
         }
+        if (data.status === 403) {
+            const user_email = data.payload.email
+            nav(`/validation-email/${user_email}`)
+        }
+        login(data.payload.accesToken)
+        nav('/home')
+
         return data
     }
 

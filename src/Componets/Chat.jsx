@@ -1,10 +1,13 @@
 import React from 'react'
 import { useMessages } from '../Hooks'
+import { Link } from 'react-router-dom'
 
 const Chat = ({ receiverId }) => {
     const { mensajes, loading_mensajes, error_mensajes } = useMessages(receiverId)
     return (
         <div>
+            <h3>ver perfil</h3>
+            <Link to={`/contact-profile/${receiverId}`}>+</Link>
             {
                 loading_mensajes
                     ? <span>Cargando...</span>
