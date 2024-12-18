@@ -4,7 +4,7 @@ import Forms from '../Componets/Forms'
 
 const ForgotPasswordScreen = () => {
     const actionForgot = async (formState) => {
-        const respose = await fetch('http://localhost:3000/api/auth/forgot-password', {
+        const respose = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json'

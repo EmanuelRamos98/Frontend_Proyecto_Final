@@ -7,7 +7,7 @@ const usePerfil = () => {
     const [error_perfil, setErrorPerfil] = useState(null)
 
     const obtenerPerfil = async () => {
-        const response = await fetch('http://localhost:3000/api/perfil/', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/perfil/`, {
             method: 'GET',
             headers: getAuthenticatedHeaders()
         })

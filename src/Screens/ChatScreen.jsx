@@ -1,18 +1,31 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Chat from '../Componets/Chat'
 import EnviarMessage from '../Componets/EnviarMessage'
+import { useChat } from '../Context/ChatContext'
+import './chatScreen.css'
 
 
+const ChatScreen = ({ onOpenModal }) => {
+    const navigate = useNavigate()
+    const { selectedContacId, setSelectedContacId   } = useChat()
+    const handleClickPerfil = () => {
+        if (onOpenModal) {
+            onOpenModal(selectedContacId)
+        }
+    }
+    const handleBackHome = () => {
+        setSelectedContacId(null)
+        navigate('/home')
+    }
 
-const ChatScreen = () => {
-    const { receiverId } = useParams()
-
+    
     return (
-        <div>
-            <h1>Chat</h1>
-            <Chat receiverId={receiverId} />
-            <EnviarMessage receiverId={receiverId} />
+        <div className='container_chat'>
+            <h1 onClick={handleClickPerfil}>Chat</h1>
+            <button onClick={handleBackHome}>volver</button>
+            <Chat receiverId={selectedContacId} />
+            <EnviarMessage receiverId={selectedContacId} />
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { usePerfil } from '../Hooks'
+import { Link } from 'react-router-dom'
 
 const MyProfileScreen = () => {
     const { perfil, loading_perfil, error_perfil } = usePerfil()
@@ -15,8 +16,8 @@ const MyProfileScreen = () => {
                             :
                             <div key={perfil.id}>
                                     {
-                                        perfil.image_base64 ?
-                                        <img src={perfil.image_base64} alt="perfil" />
+                                        perfil.img ?
+                                        <img src={perfil.img} alt="perfil" width={100}/>
                                         : <img src="/Assets/Avatar.png" alt="avatar" width={100}/>
                                     }
                                     {perfil.name}
@@ -24,6 +25,8 @@ const MyProfileScreen = () => {
                                     {perfil.email}
                                     <br />
                                     {perfil.estado}
+
+                                    <Link to={'/update-my-profile'}>Editar perfil</Link>
                             </div>
                     )
             }

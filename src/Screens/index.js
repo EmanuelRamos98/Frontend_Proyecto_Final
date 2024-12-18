@@ -6,7 +6,9 @@ import LogginScreen from "./LogginScreen";
 import MyProfileScreen from "./MyProfileScreen";
 import RecoveryPasswordScreen from "./RecoveryPasswordScreen";
 import RegisterScreen from "./RegisterScreen";
+import UpdateMyProfileScreen from "./UpdateMyProfileScreen";
 import ValidationScreen from "./ValidationScreen";
+
 
 export {
     LogginScreen,
@@ -17,5 +19,6 @@ export {
     ChatScreen,
     ValidationScreen,
     MyProfileScreen,
-    ContactProfileScreen
+    ContactProfileScreen,
+    UpdateMyProfileScreen
 }

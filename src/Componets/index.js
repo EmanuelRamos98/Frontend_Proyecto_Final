@@ -5,14 +5,16 @@ import GetContacts from "./GetContacts";
 import Chat from "./Chat";
 import EnviarMessage from "./EnviarMessage";
 import Navbar from "./Navbar";
+import ModalProfileContac from "./ModalProfileContac";
 
 
-
-export { 
-    ProtectedRoute, 
-    Form, 
-    MostrarUsers, 
-    GetContacts, 
-    Chat, 
-    EnviarMessage,Navbar
+export {
+    ProtectedRoute,
+    Form,
+    MostrarUsers,
+    GetContacts,
+    Chat,
+    EnviarMessage,
+    Navbar,
+    ModalProfileContac
 }

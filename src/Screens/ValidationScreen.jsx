@@ -41,7 +41,7 @@ const ValidationScreen = () => {
     }
 
     const handleValidation = async () => {
-        const response = await fetch(`http://localhost:3000/api/auth/revalidation/${user_email}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/revalidation/${user_email}`, {
             method: 'POST'
         })
         const data = await response.json()

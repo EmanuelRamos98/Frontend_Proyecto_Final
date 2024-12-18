@@ -1,0 +1,131 @@
+.container_btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #fff;
+    color:  #333;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translate(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0,3s ease;
+    z-index: 10;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+.container_btn:hover .tooltip{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.container_navbar {
+    background-color: rgb(32,44,51);
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+    height: 100vh;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.container_perfil_navbar {
+    height: 200px;
+}
+
+.data_navbar {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.name_navbar {
+    color: rgb(174,186,193);
+    font-size: 1rem;
+}
+
+.img_perfil_navbar {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.container_btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    color: rgb(174,186,193);
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: max-content;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translate(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0,3s ease;
+    z-index: 10;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.container_btn:hover .tooltip{
+    visibility: visible;
+    opacity: 1;
+}

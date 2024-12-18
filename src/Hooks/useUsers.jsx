@@ -7,7 +7,7 @@ const useUsers = () => {
     const [user_error_state, setUserErrorState] = useState(null)
 
     const obtenerUsers = async () => {
-        const response = await fetch('http://localhost:3000/api/contacts/search', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/search`, {
             method: 'GET',
             headers: getAuthenticatedHeaders()
         })
@@ -17,7 +17,7 @@ const useUsers = () => {
             setUserLoadingState(false)
             return
         }
-        setUserState(data.payload.lista_users)
+        setUserState(data.payload.users)
         setUserLoadingState(false)
     }
     useEffect(() => {

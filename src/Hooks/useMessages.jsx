@@ -7,18 +7,28 @@ const useMessages = ( receiverId ) => {
     const [loading_mensajes, setLoadingMensajes] = useState(true)
     const [error_mensajes, setErrorMensajes] = useState(null)
 
-
     const obtenerMensajes = async () => {
-        const response = await fetch(`http://localhost:3000/api/message/conversation/${receiverId}`, {
-            method: 'GET',
-            headers: getAuthenticatedHeaders()
-        })
-        const data = await response.json()
-        if (!data.ok) {
-            setErrorMensajes(data.messages)
+        if (!receiverId) {
+            setErrorMensajes('El Id no esta')
             setLoadingMensajes(false)
-        }else{
-            setMensajes(data.payload.conversation)
+            return
+        }try{
+            
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/message/conversation/${receiverId}`, {
+                method: 'GET',
+                headers: getAuthenticatedHeaders()
+            })
+            const data = await response.json()
+            if (!data.ok) {
+                setErrorMensajes(data.messages)
+                setLoadingMensajes(false)
+            }else{
+                setMensajes(data.payload.conversation)
+                setLoadingMensajes(false)
+            }
+        }catch{
+            setErrorMensajes('Error al capturar los mensajes')
+        }finally{
             setLoadingMensajes(false)
         }
         
@@ -26,7 +36,7 @@ const useMessages = ( receiverId ) => {
     
     useEffect(() => {
         obtenerMensajes()
-    }, [])
+    }, [receiverId])
     return {
         mensajes,
         loading_mensajes,

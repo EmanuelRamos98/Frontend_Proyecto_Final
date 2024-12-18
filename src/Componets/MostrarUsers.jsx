@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useUsers } from '../Hooks'
-import { getAuthenticatedHeaders } from '../Utils/feching'
+import { getAuthenticatedHeaders } from '../Utils/feching.js'
+import { FaPlus } from "react-icons/fa6"
+import './getContac.css'
 
 const MostrarUsers = () => {
     const { user_state, user_Loading_state, user_error_state } = useUsers()
     const [buscar, setBuscar] = useState('')
-    
+
     const handleChange = (event) => {
         setBuscar(event.target.value)
     }
@@ -14,7 +16,7 @@ const MostrarUsers = () => {
     )
 
     const handleAddContact = async (contactUsername) => {
-        const response = await fetch('http://localhost:3000/api/contacts/add', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/add`, {
             method: 'POST',
             headers: getAuthenticatedHeaders(),
             body: JSON.stringify({ contact_username: contactUsername })
@@ -27,12 +29,14 @@ const MostrarUsers = () => {
     return (
         <div>
             <div>
-                <h2>Usuarios</h2>
-                <input type="text"
-                    placeholder='buscar por name..'
-                    value={buscar}
-                    onChange={handleChange}
-                />
+                <div className='container_input_bucar'>
+                    <input type="text"
+                        placeholder='Buscar...'
+                        value={buscar}
+                        onChange={handleChange}
+                        className='input_bucar'
+                    />
+                </div>
                 {
                     user_Loading_state
                         ? <span>Cargando</span>
@@ -44,9 +48,9 @@ const MostrarUsers = () => {
                                         buscarUser.map(
                                             (user) => {
                                                 return (
-                                                    <User 
-                                                        user={user} 
-                                                        key={user._id} 
+                                                    <User
+                                                        user={user}
+                                                        key={user.id}
                                                         onAddContact={handleAddContact}
                                                     />
                                                 )
@@ -63,10 +67,26 @@ const MostrarUsers = () => {
 
 const User = ({ user, onAddContact }) => {
     return (
-        <div key={user._id}>
-            <h2>{user.name}</h2>
-            <p>{user.estado}</p>
-            <button onClick={() => onAddContact(user.name)}>Agregar Contacto</button>
+        <div key={user.id}
+            className='contacto_container user_contact_container'
+        >
+            <button onClick={() => onAddContact(user.name)}
+                className='btn_agregar_contacto'>
+                <FaPlus />
+            </button>
+
+            <div className='container_info'>
+                <div className='contac_info'>
+                    <h2 className='contac_name'>{user.name}</h2>
+                    <p className='contac_estado'>{user.estado}</p>
+                </div>
+                {
+                    user.image
+                        ? <img src={user.image} alt="avatar" className='img_contac' />
+                        : <img src="/Assets/Avatar.png" alt="avatar" className='img_contac' />
+                }
+            </div>
+
         </div>
     )
 }

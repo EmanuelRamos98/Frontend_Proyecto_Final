@@ -1,13 +1,14 @@
 import React from 'react'
 import { useMessages } from '../Hooks'
 import { Link } from 'react-router-dom'
+import './chat.css'
+
 
 const Chat = ({ receiverId }) => {
     const { mensajes, loading_mensajes, error_mensajes } = useMessages(receiverId)
     return (
         <div>
             <h3>ver perfil</h3>
-            <Link to={`/contact-profile/${receiverId}`}>+</Link>
             {
                 loading_mensajes
                     ? <span>Cargando...</span>
@@ -19,7 +20,7 @@ const Chat = ({ receiverId }) => {
                                     mensajes.map(
                                         (mensaje) => {
                                             return (
-                                                <Mensaje mensaje={mensaje} key={mensaje._id} />
+                                                <Mensaje mensaje={mensaje} key={mensaje._id} receiverId={receiverId} />
                                             )
                                         }
                                     )
@@ -31,9 +32,11 @@ const Chat = ({ receiverId }) => {
     )
 }
 
-const Mensaje = ({ mensaje }) => {
+const Mensaje = ({ mensaje, receiverId }) => {
+    const author = mensaje.authorId === receiverId
     return (
-        <div key={mensaje._id}>
+        <div key={mensaje._id}
+            className={`mensaje ${author ? 'contacto' : 'user'}`}>
             <p>{mensaje.content}</p>
         </div>
     )

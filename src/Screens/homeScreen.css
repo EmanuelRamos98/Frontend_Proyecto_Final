@@ -1,0 +1,71 @@
+.container_home {
+    display: flex;
+    height: 100vh;
+}
+
+.container_nav_home {
+    width: 600px;
+    background-color: rgb(17, 27, 33);
+    color: rgb(233, 237, 239);
+    padding: 0 10px;
+    position: relative;
+}
+
+.tilte_container_home {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+    position: sticky;
+}
+
+.title_home {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.btn_lista_user {
+    border: none;
+    font-size: 1rem;
+    color: rgb(233, 237, 239);
+    background-color: transparent;
+}
+
+.container_contact_home {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.container_contact_home::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.container_contact_home::-webkit-scrollbar-thumb {
+    background-color: #81808062;
+}
+
+.chat_container_home {
+    background-color: rgb(34, 46, 53);
+    color: rgb(233, 237, 239);
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text_no_chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    gap: 2px;
+}
+
+.no_chat_img {
+    width: 350px;
+    border-radius: 5px;
+}

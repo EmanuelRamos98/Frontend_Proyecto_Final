@@ -1,11 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { data, useParams } from 'react-router-dom'
-import { getAuthenticatedHeaders } from '../Utils/feching'
-import { useContactProfile } from '../Hooks'
+import { useContactProfile, usePerfil } from '../Hooks'
+import { useChat } from '../Context/ChatContext'
 
-const ContactProfileScreen = () => {
-    const { receiverId } = useParams()
-    const { contacto_profile, loading_contacto_profile, error_contacto_profile } = useContactProfile(receiverId)
+const ContactProfileScreen = ({ userProfile, onEdit }) => {
+    const { perfil, loading_perfil, error_perfil } = usePerfil()
+    const { selectedContacId } = useChat()
+    
+    if (userProfile) {
+        return (
+            <div>
+                {
+                    loading_perfil
+                        ? <span>Catgando ...</span>
+                        : (
+                            error_perfil
+                                ? <span>{error_perfil}</span>
+                                : <div>
+                                    <h2>{perfil.name}</h2>
+                                    <p>{perfil.estado}</p>
+                                    <p>{perfil.email}</p>
+                                    {
+                                        perfil.img
+                                            ? <img src={perfil.img} alt={perfil.name} width={100} />
+                                            : <img src="/Assets/Avatar.png" alt={perfil.name} width={100} />
+                                    }
+                                    <button onClick={onEdit}>Editar</button>
+                                </div>
+                        )
+                }
+            </div>
+        )
+    }
+
+    const { contacto_profile, loading_contacto_profile, error_contacto_profile } = useContactProfile(selectedContacId)
 
     return (
         <div>
@@ -21,8 +48,8 @@ const ContactProfileScreen = () => {
                                 <p>{contacto_profile.email}</p>
                                 {
                                     contacto_profile.imagen
-                                    ? <img src={contacto_profile.imagen} alt={contacto_profile.name} />
-                                    : <img src="/Assets/Avatar.png" alt={contacto_profile.name} width={100}/>
+                                        ? <img src={contacto_profile.imagen} alt={contacto_profile.name} width={100} />
+                                        : <img src="/Assets/Avatar.png" alt={contacto_profile.name} width={100} />
                                 }
                             </div>
                     )

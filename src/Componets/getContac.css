@@ -1,0 +1,68 @@
+.contacto_container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-right: 5px;
+    gap: 10px;
+}
+
+.contacto_container:hover {
+    background-color: rgba(174, 186, 193, 0.082);
+}
+
+.contac_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.container_input_bucar {
+    position: sticky;
+    margin: 0 5px;
+    top: 0;
+    background-color: rgb(17, 27, 33);
+    padding: 10px 0;
+}
+
+.input_bucar {
+    border-radius: 10px;
+    background-color: rgb(32, 44, 51);
+    height: 40px;
+    border: none;
+    color: rgb(174, 186, 193);
+}
+
+.input_bucar:hover {
+    box-shadow: none;
+}
+
+.input_bucar:focus {
+    outline: none;
+}
+
+.img_contac {
+    width: 70px;
+    border-radius: 50%;
+}
+
+.user_contact_container{
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.container_info{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn_agregar_contacto{
+    background-color: transparent;
+    border: none;
+    color: rgb(174, 186, 193);
+    font-size: 1.2rem;
+}

@@ -5,9 +5,9 @@ const useContactProfile = (receiverId) => {
     const [contacto_profile, setContactoProfile] = useState([])
     const [loading_contacto_profile, setLoadingContactoProfile] = useState(true)
     const [error_contacto_profile, setErrorContactoProfile] = useState(null)
-    
+
     const handleProfileContac = async () => {
-        const response = await fetch(`http://localhost:3000/api/contacts/profile-contact/${receiverId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/profile-contact/${receiverId}`, {
             method: 'GET',
             headers: getAuthenticatedHeaders()
         })
@@ -15,7 +15,7 @@ const useContactProfile = (receiverId) => {
         if (!data.ok) {
             setErrorContactoProfile(data.message)
             setLoadingContactoProfile(false)
-        }else{
+        } else {
             setContactoProfile(data.payload)
             setLoadingContactoProfile(false)
         }

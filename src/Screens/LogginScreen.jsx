@@ -2,13 +2,15 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Forms from '../Componets/Forms'
 import { AuthContext } from '../Context/AuthContentx'
-
+import { FaWhatsapp } from "react-icons/fa"
+import { GiPadlock } from "react-icons/gi"
+import './logginScreen.css'
 
 const LogginScreen = () => {
     const { login } = useContext(AuthContext)
     const nav = useNavigate()
     const actionLoggin = async (formState) => {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +48,7 @@ const LogginScreen = () => {
             }
         },
         {
-            label_text: 'Ingresa nueva contraseña:',
+            label_text: 'Ingresa tu contraseña',
             field_component: 'INPUT',
             field_container_props: {
                 className: 'row_field'
@@ -64,13 +66,25 @@ const LogginScreen = () => {
         password: ''
     }
     return (
-        <div>
-            <h1>Inicia sesion</h1>
-            <Forms action={actionLoggin} form_fields={form_fields} initial_sate_form={initial_state_form}>
-                <button type='submit'>Ingresar</button>
-                <Link to={'/forgot-password'}>Olvide mi contraseña</Link>
-                <Link to={'/register'}>Registrarte</Link>
-            </Forms>
+        <div className='container_login'>
+            <div className='container_logo_login'>
+                <FaWhatsapp className='icon_login' />
+                <h2 className='logo_login'>Warap</h2>
+            </div>
+            <div className='card_form_login'>
+                <h1 className='title_login'>Inicia sesion en Warap Web</h1>
+                <h2 className='subtitle_login'>Envia mensajes privados a tus amigos y familiares a traves de Warap en tu navegador</h2>
+                <div className='form_login'>
+                    <Forms action={actionLoggin} form_fields={form_fields} initial_sate_form={initial_state_form}>
+                        <div className='container_links'>
+                            <button type='submit' className='button_login'>Ingresar</button>
+                            <Link className='links_login' to={'/forgot-password'}>Olvide mi contraseña</Link>
+                            <Link className='links_login' to={'/register'}>Registrarte</Link>
+                        </div>
+                    </Forms>
+                </div>
+            </div>
+            <p className='footer_login'><GiPadlock className='icon_footer' /> Tus mensajes personales estan cifrados de extremo a extremo </p>
         </div>
     )
 }

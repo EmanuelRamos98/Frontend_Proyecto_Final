@@ -6,13 +6,12 @@ const useContact = () => {
     const [loading_contactos, setLoadingContactos] = useState(true)
     const [error_contactos, setErrorContatos] = useState(null)
 
-
     const obtenerContactos = async () => {
-        const response = await fetch('http://localhost:3000/api/contacts/', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/`, {
             method: 'GET',
             headers: getAuthenticatedHeaders()
         })
-        const data = await response.json()
+        const data = await response.json()        
         if (!data.ok) {
             setErrorContatos(data.message)
             setLoadingContactos(false)
@@ -21,9 +20,9 @@ const useContact = () => {
         setContactos(data.payload.contacts)
         setLoadingContactos(false)
     }
-    useEffect(()=>{
+    useEffect(() => {
         obtenerContactos()
-    },[])
+    }, [])
 
     return {
         contactos,
