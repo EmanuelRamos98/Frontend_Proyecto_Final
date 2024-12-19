@@ -17,6 +17,12 @@
     justify-content: space-evenly;
 }
 
+.contac_name{
+    font-size: 1rem;
+}
+.contac_estado{
+    font-size: 1rem;
+}
 .container_input_bucar {
     position: sticky;
     margin: 0 5px;
@@ -42,7 +48,7 @@
 }
 
 .img_contac {
-    width: 70px;
+    width: 50px;
     border-radius: 50%;
 }
 

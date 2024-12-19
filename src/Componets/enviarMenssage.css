@@ -1,0 +1,39 @@
+.container_intput_enviar_mensaje {
+    background-color: rgb(17, 27, 33);
+    padding: 20px;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+.form_enviar_mensaje {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.btn_enviar_mensaje {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    color: rgb(174, 186, 193);
+}
+
+.input_enviar_mensaje {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(32, 44, 51);
+    height: 40px;
+    border: none;
+    color: rgb(174, 186, 193);
+}
+
+.input_enviar_mensaje:hover {
+    box-shadow: none;
+}
+
+.input_enviar_mensaje:focus {
+    outline: none;
+}

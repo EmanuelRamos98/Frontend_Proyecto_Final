@@ -7,22 +7,34 @@ const useContactProfile = (receiverId) => {
     const [error_contacto_profile, setErrorContactoProfile] = useState(null)
 
     const handleProfileContac = async () => {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/profile-contact/${receiverId}`, {
-            method: 'GET',
-            headers: getAuthenticatedHeaders()
-        })
-        const data = await response.json()
-        if (!data.ok) {
-            setErrorContactoProfile(data.message)
+        if (!receiverId) {
+            setErrorContactoProfile(true)
             setLoadingContactoProfile(false)
-        } else {
-            setContactoProfile(data.payload)
+            return
+        }
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/profile-contact/${receiverId}`, {
+                method: 'GET',
+                headers: getAuthenticatedHeaders()
+            })
+            const data = await response.json()
+            if (!data.ok) {
+                setErrorContactoProfile(data.message)
+                setLoadingContactoProfile(false)
+            } else {
+                setContactoProfile(data.payload)
+                setLoadingContactoProfile(false)
+            }
+        } catch (error) {
+            setErrorContactoProfile(true)
+        } finally {
             setLoadingContactoProfile(false)
         }
     }
+
     useEffect(() => {
         handleProfileContac()
-    }, [])
+    }, [receiverId])
 
     return {
         contacto_profile,

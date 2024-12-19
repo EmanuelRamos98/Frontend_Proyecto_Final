@@ -1,4 +1,61 @@
 .container_chat{
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container_header_chat {
+    width: 100%;
+    height: 70px;
+    padding: 5px 0;
+    display: flex;
+    gap: 10px;
+    background-color: rgb(34, 46, 53);
+    position: sticky;
+    top: 0;
+}
+
+.header_chat {
+    color: rgb(233, 237, 239);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 10px;
+}
+
+.btn_back_header_chat {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.header_chat_img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.container_contact_info_header {
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.header_chat_name {
+    font-size: 1.2rem;
+}
+
+.header_chat_estado {
+    font-size: 1rem;
+}
+
+
+@media screen and (min-width: 770px) {
+    .btn_back_header_chat {
+        display: none;
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetContacts, ModalProfileContac, MostrarUsers, Navbar } from '../Componets'
 import './homeScreen.css'
 import ChatScreen from './ChatScreen'
@@ -22,6 +22,7 @@ const HomeScreen = () => {
     const navigate = useNavigate()
     const { isMobile } = useScreenSize()
     const location = useLocation()
+
 
     const handleOpenUserProfile = () => {
         setUserProfile(true)

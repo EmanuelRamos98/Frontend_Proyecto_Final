@@ -1,8 +1,58 @@
-
-.mensaje{
-    border: 1px solid black;
+.container_mensaje {
+    width: 100%;
+    height: calc(100vh - 75px - 75px);
+    display: flex;
+    flex-direction: column;
+    background-image: url('/Assets/background.jpg');
+    background-size: cover;
+    overflow-y: auto;
+    color: rgb(233, 237, 239)
+}
+.container_mensaje::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.user{
-    background-color: red;
+.container_mensaje::-webkit-scrollbar-thumb {
+    background-color: #81808062;
+}
+
+.mensaje_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat_text {
+    max-width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.mensaje {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.9rem;
+    margin: 10px 15px;
+}
+
+.mensaje p{
+    margin: 0;
+}
+
+.contacto {
+    align-self: flex-start;
+    background-color: rgb(34, 46, 53);
+}
+
+.user {
+    align-self: flex-end;
+    background-color: rgb(0, 92, 75);
+}
+
+
+.time_data_chat {
+    display: flex;
+    font-size: 1rem;
+    gap: 10px;
 }
