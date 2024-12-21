@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useContactProfile, usePerfil } from '../Hooks'
 import { useChat } from '../Context/ChatContext'
+import { MdModeEditOutline } from "react-icons/md"
+import './profileCard.css'
+
 
 const ContactProfileScreen = ({ userProfile, onEdit }) => {
     const { perfil, loading_perfil, error_perfil } = usePerfil()
     const { selectedContacId } = useChat()
-    
+
     if (userProfile) {
         return (
             <div>
@@ -15,17 +18,15 @@ const ContactProfileScreen = ({ userProfile, onEdit }) => {
                         : (
                             error_perfil
                                 ? <span>{error_perfil}</span>
-                                : <div>
-                                    <h2>{perfil.name}</h2>
-                                    <p>{perfil.estado}</p>
-                                    <p>{perfil.email}</p>
-                                    {
-                                        perfil.img
-                                            ? <img src={perfil.img} alt={perfil.name} width={100} />
-                                            : <img src="/Assets/Avatar.png" alt={perfil.name} width={100} />
-                                    }
-                                    <button onClick={onEdit}>Editar</button>
-                                </div>
+                                : (
+                                    <ProfileCard
+                                        name={perfil.name}
+                                        estado={perfil.estado}
+                                        email={perfil.email}
+                                        img={perfil.img}
+                                        onEdit={onEdit}
+                                    />
+                                )
                         )
                 }
             </div>
@@ -42,17 +43,33 @@ const ContactProfileScreen = ({ userProfile, onEdit }) => {
                     : (
                         error_contacto_profile
                             ? <span>{error_contacto_profile}</span>
-                            : <div>
-                                <h2>{contacto_profile.name}</h2>
-                                <p>{contacto_profile.estado}</p>
-                                <p>{contacto_profile.email}</p>
-                                {
-                                    contacto_profile.imagen
-                                        ? <img src={contacto_profile.imagen} alt={contacto_profile.name} width={100} />
-                                        : <img src="/Assets/Avatar.png" alt={contacto_profile.name} width={100} />
-                                }
-                            </div>
+                            : (
+                                <ProfileCard
+                                    name={contacto_profile.name}
+                                    estado={contacto_profile.estado}
+                                    email={contacto_profile.email}
+                                    img={contacto_profile.imagen}
+                                />
+                            )
                     )
+            }
+        </div>
+    )
+}
+
+
+const ProfileCard = ({ name, estado, email, img, onEdit }) => {
+    return (
+        <div className='container_card_profile'>
+            <img src={img || '/Assets/Avatar.png'} alt={name} className='img_profile_card' />
+            <div className='container_data_profile_card'>
+                <h2 className='name_profile_card'>{name}</h2>
+                <p className='estado_profile_card'>{estado}</p>
+                <p className='email_profile_card'>{email}</p>
+            </div>
+            {
+                onEdit &&
+                <button onClick={onEdit} className='btn_profile_card'> Editar perfil <MdModeEditOutline /></button>
             }
         </div>
     )

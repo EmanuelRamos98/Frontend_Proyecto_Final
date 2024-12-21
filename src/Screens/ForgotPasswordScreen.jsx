@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Forms from '../Componets/Forms'
+import { FaWhatsapp } from 'react-icons/fa'
+import { GiPadlock } from 'react-icons/gi'
 
 const ForgotPasswordScreen = () => {
     const actionForgot = async (formState) => {
@@ -36,13 +38,24 @@ const ForgotPasswordScreen = () => {
     }
 
     return (
-        <div>
-            <h1>Recuperar contraseña</h1>
-            <p>Al restablecer tu contraseña se enviara un correo electronico para enviarte las instrucciones de restablecimiento de contraseña</p>
-            <Forms action={actionForgot} form_fields={form_fields} initial_sate_form={initial_state_form}>
-                <button type='submit'>Enviar</button>
-                <Link to={'/'}>Volver</Link>
-            </Forms>
+        <div className='container_login'>
+            <div className='container_logo_login'>
+                <FaWhatsapp className='icon_login' />
+                <h2 className='logo_login'>Warap</h2>
+            </div>
+            <div className='card_form_login'>
+                <h1 className='title_login'>Recuperar contraseña</h1>
+                <p>Al restablecer tu contraseña se enviara un correo electronico para enviarte las instrucciones de restablecimiento de contraseña</p>
+                <div className='form_login'>
+                    <Forms action={actionForgot} form_fields={form_fields} initial_sate_form={initial_state_form}>
+                        <div className='container_links'>
+                            <button className='button_login' type='submit'>Enviar</button>
+                            <Link className='links_login' to={'/'}>Volver</Link>
+                        </div>
+                    </Forms>
+                </div>
+            </div>
+            <p className='footer_login'><GiPadlock className='icon_footer' /> Tus mensajes personales estan cifrados de extremo a extremo </p>
         </div>
     )
 }

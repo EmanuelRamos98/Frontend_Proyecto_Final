@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Forms from '../Componets/Forms'
+import { FaWhatsapp } from 'react-icons/fa'
+import { GiPadlock } from 'react-icons/gi'
 
 const RegisterScreen = () => {
     const navigate = useNavigate()
@@ -56,7 +58,7 @@ const RegisterScreen = () => {
             field_data_props: {
                 name: 'password',
                 id: 'password',
-                placeholder: '',
+                placeholder: 'password',
                 type: 'password'
             }
         }
@@ -69,12 +71,23 @@ const RegisterScreen = () => {
 
 
     return (
-        <div>
-            <h2>Registrate</h2>
-            <Forms action={actionRegister} form_fields={form_fields} initial_sate_form={initial_state_form}>
-                <button type='submit'>Register</button>
-                <Link to={'/'}>Iniciar session</Link>
-            </Forms>
+        <div className='container_login'>
+            <div className='container_logo_login'>
+                <FaWhatsapp className='icon_login' />
+                <h2 className='logo_login'>Warap</h2>
+            </div>
+            <div className='card_form_login'>
+                <h1 className='title_login'>Registrate</h1>
+                <div className='form_login'>
+                    <Forms action={actionRegister} form_fields={form_fields} initial_sate_form={initial_state_form}>
+                        <div className='container_links'>
+                            <button type='submit' className='button_login'>Register</button>
+                            <Link className='links_login' to={'/'}>Iniciar session</Link>
+                        </div>
+                    </Forms>
+                </div>
+            </div>
+                <p className='footer_login'><GiPadlock className='icon_footer' /> Tus mensajes personales estan cifrados de extremo a extremo </p>
         </div>
     )
 }

@@ -2,15 +2,42 @@ import React, { useState } from 'react'
 
 const useForm = (initialForm) => {
     const [formState, setFormState] = useState(initialForm)
+    const [errors, setErrors] = useState({})
 
     const handleChange = (event) => {
         const field_name = event.target.name
         const field_value = event.target.value
 
+        setErrors((prevErrors) => ({ ...prevErrors, [field_name]: undefined }))
+
         setFormState((prevFormState) => {
             return { ...prevFormState, [field_name]: field_value }
         })
     }
+
+    const validationForm = () => {
+        const newErrors = {}
+
+        for (const [field, value] of Object.entries(formState)) {
+            if (!value) {
+                newErrors[field] = `${field} es obligatorio`
+            } else {
+                if (field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    newErrors[field] = 'El email no es valido'
+                }
+                if (field === 'password' && value.length < 8) {
+                    newErrors[field] = 'La contraseña debe tener al menos 8 caracteres'
+                }
+                if (field === 'name' && value.length < 4) {
+                    newErrors[field] = 'El nombre debe tener al menos 4 caracteres'
+                }
+            }
+        }
+
+        return newErrors
+    }
+
+
 
     const handleChangeImage = (event, field_name) => {
         const FILE_MB_LIMIT = 2
@@ -37,6 +64,9 @@ const useForm = (initialForm) => {
     return {
         formState,
         handleChange,
+        validationForm,
+        errors,
+        setErrors,
         handleChangeImage
     }
 }

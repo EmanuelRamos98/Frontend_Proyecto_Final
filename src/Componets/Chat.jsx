@@ -1,10 +1,11 @@
 import React from 'react'
 import { useMessages } from '../Hooks'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './chat.css'
 
 
 const Chat = ({ receiverId }) => {
+
     const { mensajes, loading_mensajes, error_mensajes } = useMessages(receiverId)
     return (
         <div>

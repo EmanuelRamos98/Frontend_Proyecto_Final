@@ -37,3 +37,16 @@
 .input_enviar_mensaje:focus {
     outline: none;
 }
+
+.error_message {
+    position: absolute;
+    top: -20px; 
+    left: 0;
+    background-color: rgba(255, 0, 0, 0.8); 
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+

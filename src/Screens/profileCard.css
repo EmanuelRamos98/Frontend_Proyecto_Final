@@ -1,0 +1,50 @@
+.container_card_profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.img_profile_card {
+    width: 140px;
+    border-radius: 10px;
+}
+
+.container_data_profile_card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding-bottom: 10px;
+}
+
+.name_profile_card {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.estado_profile_card {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.email_profile_card {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.btn_profile_card {
+    border: none;
+    background-color: rgb(37, 211, 102);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid gray;
+    gap: 5px;
+    font-size: 1rem;
+}

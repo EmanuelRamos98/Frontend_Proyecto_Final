@@ -5,33 +5,10 @@ import { AuthContext } from '../Context/AuthContentx'
 import { FaWhatsapp } from "react-icons/fa"
 import { GiPadlock } from "react-icons/gi"
 import './logginScreen.css'
+import { useLoggin } from '../Hooks'
 
 const LogginScreen = () => {
-    const { login } = useContext(AuthContext)
-    const nav = useNavigate()
-    const actionLoggin = async (formState) => {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formState)
-        })
-        const data = await response.json()
-        console.log(data);
-
-        if (!data.ok) {
-            console.log(data.message)
-        }
-        if (data.status === 403) {
-            const user_email = data.payload.email
-            nav(`/validation-email/${user_email}`)
-        }
-        login(data.payload.accesToken)
-        nav('/home')
-
-        return data
-    }
+    const { actionLoggin } = useLoggin()
 
     const form_fields = [
         {

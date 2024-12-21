@@ -12,11 +12,11 @@
 }
 
 .modal_content {
-    background: white;
+    background: rgb(252, 245, 235);
     border-radius: 8px;
     padding: 20px;
     width: 90%;
-    max-width: 500px;
+    max-width: 300px;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }

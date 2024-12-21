@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Chat from '../Componets/Chat'
 import EnviarMessage from '../Componets/EnviarMessage'
 import { useChat } from '../Context/ChatContext'
-import './chatScreen.css'
 import { useContact, useScreenSize } from '../Hooks'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { ModalProfileContac } from '../Componets'
 import ContactProfileScreen from './ContactProfileScreen'
+import './chatScreen.css'
 
 
 const ChatScreen = ({ onOpenModal }) => {
@@ -17,6 +17,7 @@ const ChatScreen = ({ onOpenModal }) => {
     const { selectedContacId, setSelectedContacId } = useChat()
     const navigate = useNavigate()
 
+
     const selectedContact = contactos.find(contact => contact.id === selectedContacId)
 
     const handleClickPerfil = () => {
@@ -24,6 +25,8 @@ const ChatScreen = ({ onOpenModal }) => {
             onOpenModal(selectedContacId)
         }
     }
+
+
     const handleBackHome = () => {
         setSelectedContacId(null)
         navigate('/home')

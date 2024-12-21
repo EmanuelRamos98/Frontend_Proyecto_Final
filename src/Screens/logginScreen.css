@@ -15,9 +15,14 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    background-color: var(--color-background)
+}
+
 
 .container_login {
-    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -91,16 +96,31 @@
     justify-content: center;
     align-items: flex-start;
     padding: 10px;
-    gap: 5px;
+    gap: 2px;
     font-size: 1rem;
+    position: relative;
 }
+
+.error_form {
+    text-align: center;
+    width: 93%;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: var(--color-fuente);
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    top: 61px;
+    position: absolute;
+    z-index: 10;
+}
+
 
 .container_links {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 15px;
     gap: 10px;
 }
 
@@ -126,6 +146,8 @@
     font-size: 1.2rem;
 }
 
+
+
 input {
     height: 30px;
     width: 100%;
@@ -133,13 +155,13 @@ input {
     border: 1px solid black;
     padding-left: 15px;
     transition: border-color 0.3s, box-shadow 0.3s;
+
 }
 
 input:hover {
     border-color: var(--color-primary);
     box-shadow: 0 0 5px rgba(37, 211, 102, 0.5);
 }
-
 
 
 /* Medias Queries */
@@ -202,9 +224,11 @@ input:hover {
     body {
         font-size: 14px;
     }
-    .container_login{
+
+    .container_login {
         gap: 5px;
     }
+
     .container_logo_login {
         width: 300px;
         justify-content: center;

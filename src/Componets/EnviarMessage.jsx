@@ -7,7 +7,7 @@ import { IoSendSharp } from "react-icons/io5";
 const EnviarMessage = ({ receiverId }) => {
     const initialForm = { message: '' }
     const { formState, handleChange } = useForm(initialForm)
-    const { enviarMensaje } = useSendMessage()
+    const { enviarMensaje, error_messgae } = useSendMessage()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -16,6 +16,10 @@ const EnviarMessage = ({ receiverId }) => {
 
     return (
         <div className='container_intput_enviar_mensaje'>
+            {
+                error_messgae &&
+                <span className='error_message'>{error_messgae}</span>
+            }
             <form onSubmit={handleSubmit}
                 className='form_enviar_mensaje'
             >

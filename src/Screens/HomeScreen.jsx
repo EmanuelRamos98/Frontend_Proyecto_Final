@@ -61,63 +61,66 @@ const HomeScreen = () => {
     }, [isMobile, selectedContacId, navigate, location.pathname])
 
     return (
-        <div className='container_home'>
-            <Navbar handleOpenUserProfile={handleOpenUserProfile} />
-            <div className='container_nav_home'>
-                <div className='tilte_container_home'>
-                    {
-                        mostrar ?
-                            <>
-                                <p className='title_home'>Lista de usuarios</p>
-                                <button
-                                    onClick={handleCkick}
-                                    className='btn_lista_user'>
-                                    <FaArrowLeft />
-                                </button>
-                            </>
-                            :
-                            <>
-                                <p className='title_home'>Chats</p>
-                                <button
-                                    onClick={handleCkick}
-                                    className='btn_lista_user'>
-                                    Agregar
-                                </button>
-                            </>
+        <div className='body_home'>
+
+            <div className='container_home'>
+                <Navbar handleOpenUserProfile={handleOpenUserProfile} />
+                <div className='container_nav_home'>
+                    <div className='tilte_container_home'>
+                        {
+                            mostrar ?
+                                <>
+                                    <p className='title_home'>Lista de usuarios</p>
+                                    <button
+                                        onClick={handleCkick}
+                                        className='btn_lista_user'>
+                                        <FaArrowLeft />
+                                    </button>
+                                </>
+                                :
+                                <>
+                                    <p className='title_home'>Chats</p>
+                                    <button
+                                        onClick={handleCkick}
+                                        className='btn_lista_user'>
+                                        Agregar
+                                    </button>
+                                </>
+                        }
+                    </div>
+                    {mostrar
+                        ?
+                        <span className='container_contact_home'> <MostrarUsers /> </span>
+                        :
+                        <span className='container_contact_home'><GetContacts /></span>
                     }
                 </div>
-                {mostrar
-                    ?
-                    <span className='container_contact_home'> <MostrarUsers /> </span>
-                    :
-                    <span className='container_contact_home'><GetContacts /></span>
-                }
-            </div>
 
-            <div className='chat_container_home'>
-                {!isMobile && (
-                    selectedContacId ?
-                        <ChatScreen key={selectedContacId} onOpenModal={handleOpenModal} />
-                        : <div className='text_no_chat_container'>
-                            <img src="\Assets\Gente-chateando-no-chat.jpg" alt="no_chat_img" className='no_chat_img' />
-                            <p className='text_no_chat'>Comineza a chatera con tus amigos y familiares, que esperas?</p>
-                            <p className='text_no_chat'>
-                                <GiPadlock className='icon_no_chat' />
-                                Tus mensajes personales estan cifrados de extremo a extremo
-                            </p>
-                        </div>
-                )}
-            </div>
+                <div className='chat_container_home'>
+                    {!isMobile && (
+                        selectedContacId ?
+                            <ChatScreen key={selectedContacId} onOpenModal={handleOpenModal} />
+                            : <div className='text_no_chat_container'>
+                                <img src="\Assets\Gente-chateando-no-chat.jpg" alt="no_chat_img" className='no_chat_img' />
+                                <p className='text_no_chat'>Comineza a chatera con tus amigos y familiares, que esperas?</p>
+                                <p className='text_no_chat'>
+                                    <GiPadlock className='icon_no_chat' />
+                                    Tus mensajes personales estan cifrados de extremo a extremo
+                                </p>
+                            </div>
+                    )}
+                </div>
 
-            <ModalProfileContac isOpen={modalOpen} onClose={handleCloseModal}>
-                {
-                    editProfile && <UpdateMyProfileScreen />
-                    ||
-                    userProfile && <ContactProfileScreen userProfile={userProfile} onEdit={handleEditProfile} />
-                    ||
-                    modalContacId && <ContactProfileScreen />
-                }
-            </ModalProfileContac>
+                <ModalProfileContac isOpen={modalOpen} onClose={handleCloseModal}>
+                    {
+                        editProfile && <UpdateMyProfileScreen />
+                        ||
+                        userProfile && <ContactProfileScreen userProfile={userProfile} onEdit={handleEditProfile} />
+                        ||
+                        modalContacId && <ContactProfileScreen />
+                    }
+                </ModalProfileContac>
+            </div>
         </div>
     )
 }
