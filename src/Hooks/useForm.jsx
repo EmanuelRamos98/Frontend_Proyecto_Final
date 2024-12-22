@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const useForm = (initialForm) => {
     const [formState, setFormState] = useState(initialForm)
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({ global: '' })
 
     const handleChange = (event) => {
         const field_name = event.target.name
@@ -15,10 +15,14 @@ const useForm = (initialForm) => {
         })
     }
 
-    const validationForm = () => {
+    const validationForm = (optionFields = []) => {
         const newErrors = {}
 
         for (const [field, value] of Object.entries(formState)) {
+
+            /* hace que continue al siguiente cuando sea necesario */
+            if (optionFields.includes(field) && !value) continue
+
             if (!value) {
                 newErrors[field] = `${field} es obligatorio`
             } else {
@@ -30,6 +34,9 @@ const useForm = (initialForm) => {
                 }
                 if (field === 'name' && value.length < 4) {
                     newErrors[field] = 'El nombre debe tener al menos 4 caracteres'
+                }
+                if (field === 'estado' && value.length > 50) {
+                    newErrors[field] = 'El estado no puede tener mas de 50 caracteres'
                 }
             }
         }

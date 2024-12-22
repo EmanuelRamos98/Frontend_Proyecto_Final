@@ -7,11 +7,15 @@ export const useChat = () => useContext(ChatContext)
 
 export const ChatProvider = ({ children }) => {
     const [selectedContacId, setSelectedContacId] = useState(() => {
-        return sessionStorage.getItem('selectedContacId' || null)
+        return sessionStorage.getItem('selectedContacId')
     })
 
     useEffect(() => {
-        sessionStorage.setItem('selectedContacId', selectedContacId)
+        if (selectedContacId) {
+            sessionStorage.setItem('selectedContacId', selectedContacId)
+        } else {
+            sessionStorage.removeItem('selectedContacId')
+        }
     }, [selectedContacId])
 
     return (

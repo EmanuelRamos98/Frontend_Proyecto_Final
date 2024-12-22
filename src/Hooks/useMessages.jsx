@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { getAuthenticatedHeaders } from '../Utils/feching'
 
 const useMessages = (receiverId) => {
@@ -7,12 +7,7 @@ const useMessages = (receiverId) => {
     const [error_mensajes, setErrorMensajes] = useState(null)
 
     const obtenerMensajes = async () => {
-        if (!receiverId) {
-            setErrorMensajes('El Id no esta')
-            setLoadingMensajes(false)
-            return
-        } try {
-
+        try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/message/conversation/${receiverId}`, {
                 method: 'GET',
                 headers: getAuthenticatedHeaders()
@@ -34,10 +29,15 @@ const useMessages = (receiverId) => {
     }
 
     useEffect(() => {
-        obtenerMensajes()
+        
+        if (!receiverId || typeof receiverId !== 'string' || receiverId.trim() === '') {
+            return;
+        }
+        obtenerMensajes();
+
     }, [receiverId])
 
-    
+
     return {
         mensajes,
         loading_mensajes,

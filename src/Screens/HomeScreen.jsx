@@ -22,8 +22,7 @@ const HomeScreen = () => {
     const navigate = useNavigate()
     const { isMobile } = useScreenSize()
     const location = useLocation()
-
-
+    
     const handleOpenUserProfile = () => {
         setUserProfile(true)
         setModalOpen(true)
@@ -53,12 +52,11 @@ const HomeScreen = () => {
     }
 
     React.useEffect(() => {
-        if (isMobile && selectedContacId) {
-            if (!location.pathname.includes(`/chat/${selectedContacId}`)) {
-                navigate(`/chat/${selectedContacId}`)
-            }
+        if (isMobile && selectedContacId && location.pathname !== `/chat/${selectedContacId}`) {
+            navigate(`/chat/${selectedContacId}`)
+
         }
-    }, [isMobile, selectedContacId, navigate, location.pathname])
+    }, [isMobile, selectedContacId, navigate, location.pathnam])
 
     return (
         <div className='body_home'>
@@ -97,17 +95,17 @@ const HomeScreen = () => {
                 </div>
 
                 <div className='chat_container_home'>
-                    {!isMobile && (
-                        selectedContacId ?
-                            <ChatScreen key={selectedContacId} onOpenModal={handleOpenModal} />
-                            : <div className='text_no_chat_container'>
-                                <img src="\Assets\Gente-chateando-no-chat.jpg" alt="no_chat_img" className='no_chat_img' />
-                                <p className='text_no_chat'>Comineza a chatera con tus amigos y familiares, que esperas?</p>
-                                <p className='text_no_chat'>
-                                    <GiPadlock className='icon_no_chat' />
-                                    Tus mensajes personales estan cifrados de extremo a extremo
-                                </p>
-                            </div>
+                    {!isMobile && selectedContacId && (
+                        <ChatScreen key={selectedContacId} onOpenModal={handleOpenModal} />
+                    )}
+                    {!isMobile && !selectedContacId && (<div className='text_no_chat_container'>
+                        <img src="\Assets\Gente-chateando-no-chat.jpg" alt="no_chat_img" className='no_chat_img' />
+                        <p className='text_no_chat'>Comineza a chatera con tus amigos y familiares, que esperas?</p>
+                        <p className='text_no_chat'>
+                            <GiPadlock className='icon_no_chat' />
+                            Tus mensajes personales estan cifrados de extremo a extremo
+                        </p>
+                    </div>
                     )}
                 </div>
 

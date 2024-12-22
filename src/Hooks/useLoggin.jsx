@@ -16,12 +16,11 @@ const useLoggin = () => {
         })
         const data = await response.json()
         if (!data.ok) {
-            return data
-        }
-        if (!data.ok) {
-            setErrorLoggin(data.message)
-        }
-        if (data.status === 403) {
+            return {
+                ok: false,
+                message: data.errors || { global: data.message }
+            };
+        } else if (data.status === 403) {
             const user_email = data.payload.email
             nav(`/validation-email/${user_email}`)
         } else {
@@ -29,6 +28,7 @@ const useLoggin = () => {
             nav('/home')
         }
         return data
+
     }
     return {
         actionLoggin

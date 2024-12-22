@@ -1,0 +1,66 @@
+.conteiner_update_perfil {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px 0;
+}
+
+.title_update_profile {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.form_update_perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.update_container_input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.label_input{
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.input_update {
+    width: 100%;
+    position: relative;
+}
+
+.error_update{
+    text-align: center;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    top: 70px;
+    position: absolute;
+    z-index: 10;
+}
+
+.label_input_img {
+    background-color: rgb(37, 211, 102);
+}
+
+.update_container_input_img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input_update_img {
+    display: none;
+}

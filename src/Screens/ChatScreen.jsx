@@ -17,7 +17,6 @@ const ChatScreen = ({ onOpenModal }) => {
     const { selectedContacId, setSelectedContacId } = useChat()
     const navigate = useNavigate()
 
-
     const selectedContact = contactos.find(contact => contact.id === selectedContacId)
 
     const handleClickPerfil = () => {
@@ -73,7 +72,7 @@ const ChatScreen = ({ onOpenModal }) => {
                     </div>
                 }
             </div>
-            <Chat receiverId={selectedContacId} />
+            {selectedContacId && <Chat receiverId={selectedContacId} />}
             <EnviarMessage receiverId={selectedContacId} />
 
             {

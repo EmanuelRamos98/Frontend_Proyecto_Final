@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { FaWhatsapp } from 'react-icons/fa6'
 import { Link, useParams } from 'react-router-dom'
 
 const ValidationScreen = () => {
     const { user_email } = useParams()
-    const [countdown, setCountdown] = useState(10)
+    const [countdown, setCountdown] = useState(60)
     const [mostrarButton, setMostrarButton] = useState(false)
     const intervaloRef = useRef()
 
@@ -24,7 +25,7 @@ const ValidationScreen = () => {
     }
 
     const resetCountdown = () => {
-        setCountdown(10)
+        setCountdown(60)
         setMostrarButton(false)
         starCountdown()
     }
@@ -54,13 +55,21 @@ const ValidationScreen = () => {
     }
 
     return (
-        <div>
-            <h1>Falta verificar tu identidad</h1>
-            <p>Se envio un correo de verificacion a tu direccion de email</p>
-            <div>
-                <p>Si no aparece en tu bandeja de entrada puede chequear en el span y sino volver a intentar en: {formatoTiempo(countdown)}</p>
-                {mostrarButton && <button onClick={handleFunction}>Reenviar email</button>}
-                <Link to={'/'}>Ingresar</Link>
+        <div className='container_login'>
+            <div className='container_logo_login'>
+                <FaWhatsapp className='icon_login' />
+                <h2 className='logo_login'>Warap</h2>
+            </div>
+            <div className='card_form_login'>
+                <h2 className='title_login'>Verifica tu identidad</h2>
+                <p className='subtitle_login'>Se envio un correo de verificacion a tu direccion de email</p>
+                <div className='form_login'>
+                    <p className='subtitle_login'>Si no aparece en tu bandeja de entrada puede chequear en el span y sino volver a intentar en: {formatoTiempo(countdown)}</p>
+                    <div className='container_links'>
+                        {mostrarButton && <button  className='button_login' onClick={handleFunction}>Reenviar email</button>}
+                        <Link className='links_login' to={'/'}>Ingresar</Link>
+                    </div>
+                </div>
             </div>
         </div>
     )

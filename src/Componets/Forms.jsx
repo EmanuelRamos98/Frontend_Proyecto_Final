@@ -7,7 +7,6 @@ const Forms = ({ children, action, form_fields, initial_sate_form }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         const validationsErrors = validationForm()
         if (Object.keys(validationsErrors).length > 0) {
             return setErrors(validationsErrors)
@@ -20,6 +19,7 @@ const Forms = ({ children, action, form_fields, initial_sate_form }) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            {errors.global && <span className="error_global">{errors.global}</span>}
             <FieldList
                 form_fields={form_fields}
                 handleChange={handleChange}

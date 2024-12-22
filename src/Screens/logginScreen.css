@@ -114,6 +114,16 @@ body {
     z-index: 10;
 }
 
+.error_global{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: var(--color-fuente);
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
 
 .container_links {
     display: flex;

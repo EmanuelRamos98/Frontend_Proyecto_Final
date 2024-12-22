@@ -6,7 +6,7 @@
     gap: 10px;
 }
 
-.img_profile_card {
+.img_profile_card, .img_update_profile{
     width: 140px;
     border-radius: 10px;
 }
@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.btn_profile_card {
+.btn_profile_card, .btn_update_profile, .label_input_img{
     border: none;
     background-color: rgb(37, 211, 102);
     display: flex;
