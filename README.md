@@ -1,8 +1,26 @@
-# React + Vite
+# 🌐 Proyecto Final Frontend: Simulación Básica de WhatsApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es el **frontend** del proyecto final de la **Diplomatura en Desarrollo Web** de la UTN. Complementa el backend para simular de forma básica el funcionamiento de WhatsApp. 🚀
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Librerías Utilizadas
+
+El proyecto utiliza las siguientes librerías y herramientas:
+
+- **React**: Biblioteca para la creación de interfaces de usuario.
+- **React DOM**: Renderizado de componentes React en el DOM.
+- **React Icons**: Conjunto de iconos para interfaces.
+- **React Router DOM**: Manejo de rutas en aplicaciones React.
+- **Router DOM**: Soporte para navegación.
+
+---
+
+## 🎯 Funcionalidades Principales
+
+- Sistema de autenticación basado en JWT.
+- Navegación dinámica entre diferentes secciones.
+- Listado de contactos.
+- Diseño responsivo para una experiencia amigable en dispositivos móviles y escritorio.
+
+---
