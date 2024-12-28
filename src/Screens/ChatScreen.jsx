@@ -60,8 +60,8 @@ const ChatScreen = ({ onOpenModal }) => {
 
 
                         {
-                            selectedContact.img ?
-                                <img src={selectedContact.img} alt="avatar" className='header_chat_img' />
+                            selectedContact.image ?
+                                <img src={selectedContact.image} alt="avatar" className='header_chat_img' />
                                 : <img src="/Assets/Avatar.png" alt="avatar" className='header_chat_img' />
                         }
 
