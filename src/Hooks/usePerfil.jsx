@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAuthenticatedHeaders } from '../Utils/feching.js'
 
+//Hook para obtener el perfil del usuario
 const usePerfil = () => {
     const [perfil, setPerfil] = useState([])
     const [loading_perfil, setLoadingPerfil] = useState(true)

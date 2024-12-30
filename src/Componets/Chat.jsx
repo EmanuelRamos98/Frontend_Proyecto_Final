@@ -5,8 +5,9 @@ import './chat.css'
 
 
 const Chat = ({ receiverId }) => {
-
+    //Llama al hook para obtener los mensajes
     const { mensajes, loading_mensajes, error_mensajes } = useMessages(receiverId)
+
     return (
         <div>
             {
@@ -17,6 +18,7 @@ const Chat = ({ receiverId }) => {
                             ? <span>{error_mensajes}</span>
                             : <div className='container_mensaje'>
                                 {
+                                    //Mapea sobre os mensajes y los renderiza mediante el componente Mensaje
                                     mensajes.map(
                                         (mensaje) => {
                                             return (
@@ -33,7 +35,9 @@ const Chat = ({ receiverId }) => {
 }
 
 const Mensaje = ({ mensaje, receiverId }) => {
+    //Diferencio cual es el autor del mensaje
     const author = mensaje.authorId === receiverId
+    //Obtengo la fecha de los mensajes
     const isoDate = mensaje.createdAt
 
 
@@ -41,6 +45,7 @@ const Mensaje = ({ mensaje, receiverId }) => {
         <div key={mensaje._id} className={`mensaje ${author ? 'contacto' : 'user'}`}>
             <div className='mensaje_container'>
                 <p className='chat_text'>{mensaje.content}</p>
+                {/* Muestra la fecha formateada */}
                 <FormatDate isoDate={isoDate} />
             </div>
         </div>
@@ -49,8 +54,10 @@ const Mensaje = ({ mensaje, receiverId }) => {
 
 
 const FormatDate = ({ isoDate }) => {
+    //Convierto la fecha ISO en un objeto Date
     const date = new Date(isoDate)
 
+    //Conventimos a formato legible
     const day = date.toLocaleDateString('es-ES', { weekday: 'short' })
     const time = date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
 

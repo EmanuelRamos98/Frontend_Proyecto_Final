@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { getAuthenticatedHeaders } from '../Utils/feching'
 
+// Hook para obtener el perfil de un contacto en especifico
 const useContactProfile = (receiverId) => {
     const [contacto_profile, setContactoProfile] = useState([])
     const [loading_contacto_profile, setLoadingContactoProfile] = useState(true)
     const [error_contacto_profile, setErrorContactoProfile] = useState(null)
 
     const handleProfileContac = async () => {
-        if (!receiverId) {
-            setErrorContactoProfile(true)
-            setLoadingContactoProfile(false)
-            return
-        }
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contacts/profile-contact/${receiverId}`, {
                 method: 'GET',
@@ -33,6 +29,10 @@ const useContactProfile = (receiverId) => {
     }
 
     useEffect(() => {
+        //Validamos que 'receiverId' sea valido
+        if (!receiverId || typeof receiverId !== 'string' || receiverId.trim() === '') {
+            return;
+        }
         handleProfileContac()
     }, [receiverId])
 

@@ -3,22 +3,25 @@ import { useForm, useSendMessage } from '../Hooks'
 import './enviarMenssage.css'
 import { IoSendSharp } from "react-icons/io5";
 
+//Componente que se encarga de enviar los mensajes
+const EnviarMessage = ({ receiverId }) => {   
+    const initialForm = { message: '' }//Estado del formulario
+    const { formState, handleChange } = useForm(initialForm)//Importamos los elementos necesarios del Hook
+    const { enviarMensaje, error_message } = useSendMessage()//Importamos los elementos necesarios del Hook
 
-const EnviarMessage = ({ receiverId }) => {
-    const initialForm = { message: '' }
-    const { formState, handleChange } = useForm(initialForm)
-    const { enviarMensaje, error_messgae } = useSendMessage()
-
+    //Funcion submit para enviar mensajes
     const handleSubmit = async (e) => {
         e.preventDefault()
         await enviarMensaje(receiverId, formState.message)
     }
 
     return (
+        //Formulario para enviar mensajes
         <div className='container_intput_enviar_mensaje'>
             {
-                error_messgae &&
-                <span className='error_message'>{error_messgae}</span>
+                error_message &&
+                <span className='error_message'>{error_message}</span>
+                //Mostramos el error en caso de haber
             }
             <form onSubmit={handleSubmit}
                 className='form_enviar_mensaje'

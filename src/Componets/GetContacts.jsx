@@ -7,14 +7,18 @@ import './getContac.css'
 
 
 const GetContacts = () => {
-    const { selectedContacId, setSelectedContacId } = useChat()
-    const { contactos, loading_contactos, error_contactos } = useContact()
-    const [buscar, setBuscar] = useState('')
-    const [mostrar_chat, setMostrarChat] = useState(false)
+    //Usa el contexto para setear el contacto seleccionado
+    const { setSelectedContacId } = useChat()
+    const { contactos, loading_contactos, error_contactos } = useContact()//Llama al Hook para utilizar los elementos necesarios
+    const [buscar, setBuscar] = useState('')//Estado para setear la busqueda
+    const [mostrar_chat, setMostrarChat] = useState(false)//Estado para saber si se debe o no mostrar el chat
+
+    //Funcion que maneja el cambio en el imput de busqueda
     const handleChange = (event) => {
         setBuscar(event.target.value)
     }
 
+    //Filtra los contactos basandose en el valor de busqueda
     const bucarContact = Array.isArray(contactos)
         ? contactos.filter(contacto =>
             contacto && contacto.name && contacto.name.toLowerCase().includes(buscar.toLowerCase())
@@ -26,12 +30,14 @@ const GetContacts = () => {
         setMostrarChat(true)
     }
 
+    //Funcion para setear el id del contacto en el contexto
     const handleContact = (contacId) => {
         setSelectedContacId(contacId)
     }
 
     return (
         <div>
+            {/* Input de busqueda de contactos */}
             <div className='container_input_bucar'>
                 <input type="text"
                     placeholder='Buscar...'

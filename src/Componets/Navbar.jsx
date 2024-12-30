@@ -5,11 +5,13 @@ import { AuthContext } from '../Context/AuthContentx'
 import { RiLogoutCircleLine } from "react-icons/ri"
 import './navbar.css'
 
-
+//Componente Navbar
+//Este muestra el acceso al perfil del usuario y el boton de cierre de sesion
 const Navbar = ({ handleOpenUserProfile }) => {
-    const { perfil, loading_perfil, error_perfil } = usePerfil()
-    const { logout } = useContext(AuthContext)
+    const { perfil, loading_perfil, error_perfil } = usePerfil()//Utilizo los valores necesarios del Hook
+    const { logout } = useContext(AuthContext)//Utilizo la funcion de Logout del contexto
 
+    //Funcion que controla el logout
     const handleLogout = () => {
         logout()
     }
