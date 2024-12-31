@@ -2,45 +2,50 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa6'
 import { Link, useParams } from 'react-router-dom'
 
+//Pantalla de validacion
 const ValidationScreen = () => {
-    const { user_email } = useParams()
-    const [countdown, setCountdown] = useState(60)
-    const [mostrarButton, setMostrarButton] = useState(false)
-    const intervaloRef = useRef()
+    const { user_email } = useParams() //Obtiene el email del usuario por parametros
+    const [countdown, setCountdown] = useState(60) //Estado para manejar el temporizador
+    const [mostrarButton, setMostrarButton] = useState(false) //Estado para mostrar el boton de reenviar
+    const intervaloRef = useRef() //Referencia para almacenar el intervalo del temporizador
 
-
+    //Inicia la cuenta regresiva
     const starCountdown = () => {
-        clearInterval(intervaloRef.current)
+        clearInterval(intervaloRef.current) //Limpia cualquier intervalo previo
         intervaloRef.current = setInterval(() => {
             setCountdown((prevCountdown) => {
                 if (prevCountdown > 0) {
-                    return prevCountdown - 1
+                    return prevCountdown - 1 //Reduce el temporizador
                 } else {
-                    clearInterval(intervaloRef.current)
-                    setMostrarButton(true)
+                    clearInterval(intervaloRef.current) //Limpia el intervalo cuando llega a 0
+                    setMostrarButton(true) //Muestra el boton para reenviar el email
                     return 0
                 }
             })
         }, 1000)
     }
 
+    //Reinicia el temporizador
     const resetCountdown = () => {
-        setCountdown(60)
-        setMostrarButton(false)
-        starCountdown()
+        setCountdown(60) //Reinicia el temporizador a 60 segundos
+        setMostrarButton(false) //Oculta el boton
+        starCountdown() //Reinicia el intervalo
     }
 
+    //Usa el efecto para iniciar el temporizador cuando se carga el componente
     useEffect(() => {
         starCountdown()
-        return () => clearInterval(intervaloRef.current)
+        return () => clearInterval(intervaloRef.current) //Limpia el intervalo al desmontar el componente
     }, [])
 
+    //Formatea el tiempo en MM:SS
     const formatoTiempo = (segundos) => {
         const minutos = Math.floor(segundos / 60)
         const remaingSeconds = segundos % 60
         return `${minutos}:${remaingSeconds < 10 ? '0' : ''}${remaingSeconds}`
     }
 
+    //Enviamos la consulta a la API para que reenvie el email
     const handleValidation = async () => {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/revalidation/${user_email}`, {
             method: 'POST'
@@ -49,6 +54,7 @@ const ValidationScreen = () => {
         return data
     }
 
+    //Maneja la funcion de validacion y reinicia el temporizador
     const handleFunction = () => {
         handleValidation()
         resetCountdown()

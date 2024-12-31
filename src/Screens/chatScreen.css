@@ -1,22 +1,23 @@
-.container_chat{
+.container_chat {
     width: 100%;
     height: 100dvh;
     display: flex;
     flex-direction: column;
 }
+
 .container_header_chat {
     width: 100%;
     height: 70px;
     padding: 5px 0;
     display: flex;
     gap: 10px;
-    background-color: rgb(34, 46, 53);
+    background-color: var(--color-home-primary);
     position: sticky;
     top: 0;
 }
 
 .header_chat {
-    color: rgb(233, 237, 239);
+    color: var(--color-fuente-home);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -28,7 +29,7 @@
     align-items: center;
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--color-fuente-home);
     font-size: 1.3rem;
 }
 

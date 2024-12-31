@@ -1,5 +1,5 @@
 .body_home {
-    background-color: rgb(17, 27, 33);
+    background-color: var(--color-home-secondary);
 }
 
 .container_home {
@@ -11,8 +11,8 @@
 
 .container_nav_home {
     width: 600px;
-    background-color: rgb(17, 27, 33);
-    color: rgb(233, 237, 239);
+    background-color: var(--color-home-secondary);
+    color: var(--color-fuente-home);
     padding: 0 10px;
     position: relative;
 }
@@ -32,7 +32,7 @@
 .btn_lista_user {
     border: none;
     font-size: 1rem;
-    color: rgb(233, 237, 239);
+    color: var(--color-fuente-home);
     background-color: transparent;
 }
 
@@ -54,8 +54,8 @@
 }
 
 .chat_container_home {
-    background-color: rgb(34, 46, 53);
-    color: rgb(233, 237, 239);
+    background-color: var(--color-home-primary);
+    color: var(--color-fuente-home);
     width: 100%;
     height: 100%;
     text-align: center;

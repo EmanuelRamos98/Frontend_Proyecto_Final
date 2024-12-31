@@ -17,26 +17,28 @@
     justify-content: space-evenly;
 }
 
-.contac_name{
+.contac_name {
     font-size: 1rem;
 }
-.contac_estado{
+
+.contac_estado {
     font-size: 1rem;
 }
+
 .container_input_bucar {
     position: sticky;
     margin: 0 5px;
     top: 0;
-    background-color: rgb(17, 27, 33);
+    background-color: var(--color-home-secondary);
     padding: 10px 0;
 }
 
 .input_bucar {
     border-radius: 10px;
-    background-color: rgb(32, 44, 51);
+    background-color: var(--color-home-primary);
     height: 40px;
     border: none;
-    color: rgb(174, 186, 193);
+    color: var(--color-fuente-home);
 }
 
 .input_bucar:hover {
@@ -52,23 +54,23 @@
     border-radius: 50%;
 }
 
-.user_contact_container{
+.user_contact_container {
     justify-content: space-between;
     width: 100%;
     padding: 10px;
     padding-right: 20px;
 }
 
-.container_info{
+.container_info {
     display: flex;
     flex-direction: row-reverse;
     gap: 5px;
     justify-content: center;
 }
 
-.btn_agregar_contacto{
+.btn_agregar_contacto {
     background-color: transparent;
     border: none;
-    color: rgb(174, 186, 193);
+    color: var(--color-fuente-home);
     font-size: 1.2rem;
 }

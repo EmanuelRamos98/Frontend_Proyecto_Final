@@ -37,7 +37,7 @@
 
 .btn_profile_card, .btn_update_profile, .label_input_img{
     border: none;
-    background-color: rgb(37, 211, 102);
+    background-color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;

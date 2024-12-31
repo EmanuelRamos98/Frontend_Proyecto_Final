@@ -4,11 +4,14 @@ import Forms from '../Componets/Forms'
 import { FaWhatsapp } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 
+//Pantalla para cambiar la password
 const RecoveryPasswordScreen = () => {
-    const navigate = useNavigate()
-    const { reset_token } = useParams()
+    const navigate = useNavigate() //Navegacion entre rutas
+    const { reset_token } = useParams() //obtiene el token del params
 
+    //Funcion para actualizar la password
     const actionRecoveryPassword = async (formState) => {
+        //Realiza la consulta con una solicitud PUT a la API
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/recovery-password/${reset_token}`, {
             method: 'PUT',
             headers: {
@@ -20,12 +23,14 @@ const RecoveryPasswordScreen = () => {
         })
         const data = await response.json()
 
+        //Si la respuesta es exitosa, redirige a la pag de inicio
         if (data.ok) {
             navigate('/')
         }
         return data
     }
 
+    //Objeto field para crear el Formulario
     const form_fields = [
         {
             label_text: 'Ingresa nueva contraseña:',
@@ -41,6 +46,8 @@ const RecoveryPasswordScreen = () => {
             }
         }
     ]
+
+    //Estado inicial del formulario
     const initial_state_form = {
         password: ''
     }
@@ -54,6 +61,7 @@ const RecoveryPasswordScreen = () => {
             <div className='card_form_login'>
                 <h1 className='title_login'>Ingrese su nueva contraseña</h1>
                 <div className='form_login'>
+                    {/* Componente Form */}
                     <Forms action={actionRecoveryPassword} form_fields={form_fields} initial_sate_form={initial_state_form}>
                         <div className='container_links'>
                             <button type='submit' className='button_login'>Enviar</button>

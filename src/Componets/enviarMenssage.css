@@ -1,5 +1,5 @@
 .container_intput_enviar_mensaje {
-    background-color: rgb(17, 27, 33);
+    background-color: var(--color-home-secondary);
     padding: 20px;
     width: 100%;
     position: sticky;
@@ -18,16 +18,16 @@
     border: none;
     background-color: transparent;
     font-size: 1.5rem;
-    color: rgb(174, 186, 193);
+    color: var(--color-fuente-home);
 }
 
 .input_enviar_mensaje {
     border: none;
     border-radius: 10px;
-    background-color: rgb(32, 44, 51);
+    background-color: var(--color-home-primary);
     height: 40px;
     border: none;
-    color: rgb(174, 186, 193);
+    color: var(--color-fuente-home);
 }
 
 .input_enviar_mensaje:hover {
@@ -42,7 +42,7 @@
     position: absolute;
     top: -20px; 
     left: 0;
-    background-color: rgba(255, 0, 0, 0.8); 
+    background-color: var(--color-error); 
     color: white;
     padding: 5px 10px;
     border-radius: 5px;

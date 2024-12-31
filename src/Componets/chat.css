@@ -6,7 +6,7 @@
     background-image: url('/Assets/background.jpg');
     background-size: cover;
     overflow-y: auto;
-    color: rgb(233, 237, 239)
+    color: var(--color-fuente-home)
 }
 .container_mensaje::-webkit-scrollbar {
     width: 10px;
@@ -42,12 +42,12 @@
 
 .contacto {
     align-self: flex-start;
-    background-color: rgb(34, 46, 53);
+    background-color: var(--color-home-primary);
 }
 
 .user {
     align-self: flex-end;
-    background-color: rgb(0, 92, 75);
+    background-color: var(--color-message);
 }
 
 

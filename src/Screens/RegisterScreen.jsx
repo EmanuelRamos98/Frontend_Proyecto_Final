@@ -4,10 +4,13 @@ import Forms from '../Componets/Forms'
 import { FaWhatsapp } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 
+//Pantalla de registro
 const RegisterScreen = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate() //Hook para navegar
 
+    //Funcion para registrar
     const actionRegister = async (formState) => {
+        //Consulta a la API con el metodo POST
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
@@ -16,12 +19,15 @@ const RegisterScreen = () => {
             body: JSON.stringify(formState)
         })
         const data = await response.json()
+        //Si el registro fue exitoso se avanza al Login
         if (data.ok) {
             navigate('/')
         }
+        //Retornamos la consulta
         return data
     }
 
+    //Objeto field para crear el Formulario
     const form_fields = [
         {
             label_text: 'Ingresa tu Nombre',
@@ -63,6 +69,8 @@ const RegisterScreen = () => {
             }
         }
     ]
+
+    //Estado inicial del Formulario
     const initial_state_form = {
         name: '',
         email: '',
@@ -87,7 +95,7 @@ const RegisterScreen = () => {
                     </Forms>
                 </div>
             </div>
-                <p className='footer_login'><GiPadlock className='icon_footer' /> Tus mensajes personales estan cifrados de extremo a extremo </p>
+            <p className='footer_login'><GiPadlock className='icon_footer' /> Tus mensajes personales estan cifrados de extremo a extremo </p>
         </div>
     )
 }

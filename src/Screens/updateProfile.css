@@ -41,7 +41,7 @@
 .error_update{
     text-align: center;
     width: 100%;
-    background-color: rgba(255, 0, 0, 0.8);
+    background-color: var(--color-error);
     padding: 5px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -51,7 +51,7 @@
 }
 
 .label_input_img {
-    background-color: rgb(37, 211, 102);
+    background-color: var(--color-primary);
 }
 
 .update_container_input_img {
