@@ -6,9 +6,10 @@ import './profileCard.css'
 
 
 const ContactProfileScreen = ({ userProfile, onEdit }) => {
-    const { perfil, loading_perfil, error_perfil } = usePerfil()
-    const { selectedContacId } = useChat()
+    const { perfil, loading_perfil, error_perfil } = usePerfil() //Obtiene los datos del perfil del usuario
+    const { selectedContacId } = useChat() //ID del contacto selecionado
 
+    //Renderiza perfil del ususario si es true
     if (userProfile) {
         return (
             <div>
@@ -33,8 +34,10 @@ const ContactProfileScreen = ({ userProfile, onEdit }) => {
         )
     }
 
+    //Obtiene los datos del perfil del contacto selecionado
     const { contacto_profile, loading_contacto_profile, error_contacto_profile } = useContactProfile(selectedContacId)
 
+    //Retorna el perfil del contacto
     return (
         <div>
             {
@@ -67,6 +70,7 @@ const ProfileCard = ({ name, estado, email, img, onEdit }) => {
                 <p className='estado_profile_card'>{estado}</p>
                 <p className='email_profile_card'>{email}</p>
             </div>
+            {/* Boton para editar el perfil, aparece solo si se pasa 'onEdit' */}
             {
                 onEdit &&
                 <button onClick={onEdit} className='btn_profile_card'> Editar perfil <MdModeEditOutline /></button>

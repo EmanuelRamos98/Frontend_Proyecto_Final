@@ -7,9 +7,11 @@ import { GiPadlock } from "react-icons/gi"
 import './logginScreen.css'
 import { useLoggin } from '../Hooks'
 
+//Pantalla de Login
 const LogginScreen = () => {
-    const { actionLoggin } = useLoggin()
+    const { actionLoggin } = useLoggin() //Obtenemos los elementos del Hook personalizado
 
+    //Objeto fields para construir el formulario
     const form_fields = [
         {
             label_text: 'Ingresa tu email',
@@ -38,10 +40,13 @@ const LogginScreen = () => {
             }
         }
     ]
+
+    //Estado inicial del Formulario
     const initial_state_form = {
         email: '',
         password: ''
     }
+
     return (
         <div className='container_login'>
             <div className='container_logo_login'>
@@ -52,6 +57,7 @@ const LogginScreen = () => {
                 <h1 className='title_login'>Inicia sesion en Warap Web</h1>
                 <h2 className='subtitle_login'>Envia mensajes privados a tus amigos y familiares a traves de Warap en tu navegador</h2>
                 <div className='form_login'>
+                    {/* Componente Form crea el formulario */}
                     <Forms action={actionLoggin} form_fields={form_fields} initial_sate_form={initial_state_form}>
                         <div className='container_links'>
                             <button type='submit' className='button_login'>Ingresar</button>

@@ -11,33 +11,40 @@ import './chatScreen.css'
 
 
 const ChatScreen = ({ onOpenModal }) => {
-    const [opneMobilModal, setOpneMobilModal] = useState(false)
-    const { isMobile } = useScreenSize()
-    const { contactos, loading_contactos, error_contactos } = useContact()
-    const { selectedContacId, setSelectedContacId } = useChat()
-    const navigate = useNavigate()
+    const [opneMobilModal, setOpneMobilModal] = useState(false) //Estado para mostrar el modal en dispositivos moviles
+    const { isMobile } = useScreenSize() //Detecta si es un dispositivo movil
+    const { contactos } = useContact() //Obtenemos los contactos del Hook
+    const { selectedContacId, setSelectedContacId } = useChat() //Obtenemos el contacto selecionado del contexto y su seter
+    const navigate = useNavigate() //Hook de navegacion
 
+    //Busco el contacto actualmente seleccionado
     const selectedContact = contactos.find(contact => contact.id === selectedContacId)
 
+    //Abre el perfil del contacto en el modal
     const handleClickPerfil = () => {
         if (onOpenModal) {
             onOpenModal(selectedContacId)
         }
     }
 
-
+    //Vuelve al Home y deselecciona el contacto
     const handleBackHome = () => {
         setSelectedContacId(null)
         navigate('/home')
     }
 
+    //Abre el modal en caso movil
     const handleOpenMobileModal = () => {
         setOpneMobilModal(true)
     }
+
+    //Cierra el modal en caso movil
     const handleCloseModal = () => {
         setOpneMobilModal(false)
     }
 
+    //Maneja el click en el encabezado del chat
+    //Abre el perfil del contacto segun el dispositivo en el que se este ejecutando
     const handleClick = () => {
         if (isMobile) {
             handleOpenMobileModal()
@@ -72,9 +79,12 @@ const ChatScreen = ({ onOpenModal }) => {
                     </div>
                 }
             </div>
+
+            {/* Componente del chat y envio de mensajes */}
             {selectedContacId && <Chat receiverId={selectedContacId} />}
             <EnviarMessage receiverId={selectedContacId} />
-
+            
+            {/* Modal en version mobil */}
             {
                 isMobile && opneMobilModal && (
                     <ModalProfileContac isOpen={handleOpenMobileModal} onClose={handleCloseModal}>

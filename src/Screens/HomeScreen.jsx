@@ -11,24 +11,27 @@ import { useScreenSize } from '../Hooks'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 
-
+//Componenete Home
 const HomeScreen = () => {
-    const [mostrar, setMostrar] = useState(false)
-    const { selectedContacId } = useChat()
-    const [modalOpen, setModalOpen] = useState(false)
-    const [modalContacId, setModalContacId] = useState(null)
-    const [userProfile, setUserProfile] = useState(false)
-    const [editProfile, setEditProfile] = useState(false)
-    const navigate = useNavigate()
-    const { isMobile } = useScreenSize()
-    const location = useLocation()
-    
+    //Hooks de estado para manejar las diferentes vistas y modal
+    const [mostrar, setMostrar] = useState(false) //Controla si muestra la lista usuarios o de contactos
+    const { selectedContacId } = useChat() //El ID del contacto seleccionado
+    const [modalOpen, setModalOpen] = useState(false) //Controla el modal
+    const [modalContacId, setModalContacId] = useState(null) //ID del contacto a mostrar en el modal
+    const [userProfile, setUserProfile] = useState(false) //Mostrar el perfil del usuario en el modal
+    const [editProfile, setEditProfile] = useState(false) //Mostrar el editor del perfil
+    const navigate = useNavigate() //Hook para navegar
+    const { isMobile } = useScreenSize() //Detecta si es mobil o no
+    const location = useLocation() //Obtiene la ubicacion actual de la app
+
+    //Abre el perfil del usuario en el modal
     const handleOpenUserProfile = () => {
         setUserProfile(true)
         setModalOpen(true)
         setEditProfile(false)
     }
 
+    //Abre un modal para mostrar en el modal el perfil de un contacto
     const handleOpenModal = (contactId) => {
         setModalContacId(contactId)
         setUserProfile(false)
@@ -36,6 +39,7 @@ const HomeScreen = () => {
         setEditProfile(false)
     }
 
+    //Cierra cualquier modal abierto y restablece los estados
     const handleCloseModal = () => {
         setModalOpen(false)
         setModalContacId(null)
@@ -43,14 +47,17 @@ const HomeScreen = () => {
         setEditProfile(false)
     }
 
+    //Activa el editor del perfil
     const handleEditProfile = () => {
         setEditProfile(true)
     }
 
+    //Alterna si muestra usuarios o los contactos
     const handleCkick = () => {
         setMostrar((prevState) => !prevState)
     }
 
+    //Navega automaticamente al chat seleccionado si estamos en dispositivos moviles 
     React.useEffect(() => {
         if (isMobile && selectedContacId && location.pathname !== `/chat/${selectedContacId}`) {
             navigate(`/chat/${selectedContacId}`)
@@ -60,8 +67,8 @@ const HomeScreen = () => {
 
     return (
         <div className='body_home'>
-
             <div className='container_home'>
+                {/* Barra de navegacion con la funcion para abrir el perfil del usuario*/}
                 <Navbar handleOpenUserProfile={handleOpenUserProfile} />
                 <div className='container_nav_home'>
                     <div className='tilte_container_home'>
@@ -86,6 +93,7 @@ const HomeScreen = () => {
                                 </>
                         }
                     </div>
+                    {/* Muestra la lista de ususarios o los contactos segun el estado */}
                     {mostrar
                         ?
                         <span className='container_contact_home'> <MostrarUsers /> </span>
@@ -95,9 +103,11 @@ const HomeScreen = () => {
                 </div>
 
                 <div className='chat_container_home'>
+                    {/* Muestra la pantalla del chat si hay un contacto selecionado */}
                     {!isMobile && selectedContacId && (
                         <ChatScreen key={selectedContacId} onOpenModal={handleOpenModal} />
                     )}
+                    {/* Muestra un mensaje predeterminado si no hay chat seleccionado */}
                     {!isMobile && !selectedContacId && (<div className='text_no_chat_container'>
                         <img src="\Assets\Gente-chateando-no-chat.jpg" alt="no_chat_img" className='no_chat_img' />
                         <p className='text_no_chat'>Comineza a chatera con tus amigos y familiares, que esperas?</p>
@@ -109,13 +119,14 @@ const HomeScreen = () => {
                     )}
                 </div>
 
+                {/* Modal para perfiles o edicion del perdil de ususario */}
                 <ModalProfileContac isOpen={modalOpen} onClose={handleCloseModal}>
                     {
-                        editProfile && <UpdateMyProfileScreen />
+                        editProfile && <UpdateMyProfileScreen /> //Para editar perfil
                         ||
-                        userProfile && <ContactProfileScreen userProfile={userProfile} onEdit={handleEditProfile} />
+                        userProfile && <ContactProfileScreen userProfile={userProfile} onEdit={handleEditProfile} /> //Perfil del ususario
                         ||
-                        modalContacId && <ContactProfileScreen />
+                        modalContacId && <ContactProfileScreen /> //Perfil del contacto
                     }
                 </ModalProfileContac>
             </div>

@@ -4,7 +4,10 @@ import Forms from '../Componets/Forms'
 import { FaWhatsapp } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 
+//Componenete para la recuperacion de la contraseña 
 const ForgotPasswordScreen = () => {
+
+    //Funcion para realizar la peticion a la API
     const actionForgot = async (formState) => {
         const respose = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
             method: 'POST',
@@ -17,6 +20,7 @@ const ForgotPasswordScreen = () => {
         return data
     }
 
+    //Objeto fields para construir el formulario
     const form_fields = [
         {
             label_text: 'Ingresa tu email',
@@ -33,6 +37,7 @@ const ForgotPasswordScreen = () => {
         }
     ]
 
+    //Estado inicial del Formulario
     const initial_state_form = {
         email: '',
     }
@@ -47,6 +52,7 @@ const ForgotPasswordScreen = () => {
                 <h1 className='title_login'>Recuperar contraseña</h1>
                 <p>Al restablecer tu contraseña se enviara un correo electronico para enviarte las instrucciones de restablecimiento de contraseña</p>
                 <div className='form_login'>
+                    {/* Componente Form, crea el formulario */}
                     <Forms action={actionForgot} form_fields={form_fields} initial_sate_form={initial_state_form}>
                         <div className='container_links'>
                             <button className='button_login' type='submit'>Enviar</button>
