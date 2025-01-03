@@ -3,6 +3,7 @@ import { useUsers } from '../Hooks'
 import { getAuthenticatedHeaders } from '../Utils/feching.js'
 import { FaPlus } from "react-icons/fa6"
 import './getContac.css'
+import Skeleton from 'react-loading-skeleton'
 
 //Componente para mostrar todos los usuarios que contiene la app
 const MostrarUsers = () => {
@@ -46,7 +47,16 @@ const MostrarUsers = () => {
                 </div>
                 {
                     user_Loading_state
-                        ? <span>Cargando</span>
+                        ? <div>
+                            {/* Mostramos los skeletons simulando una cantidad de contactos ya que todavia no la tenemos */}
+                            {(() => {
+                                const skeleton = []
+                                for (let i = 0; i < 3; i++) {
+                                    skeleton.push(<UserSkeleton key={i} />)
+                                }
+                                return skeleton
+                            })()}
+                        </div>
                         : (
                             user_error_state
                                 ? <span>{user_error_state}</span>
@@ -100,5 +110,18 @@ const User = ({ user, onAddContact }) => {
     )
 }
 
+const UserSkeleton = () => {
+    return (
+        <div className='contacto_container user_contact_containerer_info'>
+            <div className='container_info'>
+                <div className='contac_info'>
+                    <h2 className='contac_name'><Skeleton width={100} style={{ opacity: 0.5 }} /></h2>
+                    <p className='contac_estado'><Skeleton width={150} style={{ opacity: 0.5 }} /></p>
+                </div>
+                <span className='img_contac'><Skeleton circle height={50} width={50} style={{ opacity: 0.5 }} /></span>
+            </div>
+        </div>
+    )
+}
 
 export default MostrarUsers

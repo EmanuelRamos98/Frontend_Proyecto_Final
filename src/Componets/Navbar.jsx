@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../Context/AuthContentx'
 import { RiLogoutCircleLine } from "react-icons/ri"
 import './navbar.css'
+import Skeleton from 'react-loading-skeleton'
 
 //Componente Navbar
 //Este muestra el acceso al perfil del usuario y el boton de cierre de sesion
@@ -21,7 +22,7 @@ const Navbar = ({ handleOpenUserProfile }) => {
         <div className='container_navbar'>
             {
                 loading_perfil
-                    ? <span>Cargando...</span>
+                    ? <span><NavbarSkeleton /></span>
                     : (
                         error_perfil
                             ? <span>{error_perfil}</span>
@@ -53,5 +54,18 @@ const Navbar = ({ handleOpenUserProfile }) => {
     )
 }
 
+
+const NavbarSkeleton = () => {
+    return (
+        <div className='container_perfil_navbar container_btn'>
+            <div className='data_navbar'>
+                <h2 className='name_navbar'><Skeleton width={50} style={{ opacity: 0.5 }} /></h2>
+                <div className='container_img_perfil_navbar btn'>
+                    <span className='img_perfil_navbar'><Skeleton circle height={50} width={50} style={{ opacity: 0.5 }}/></span>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export default Navbar

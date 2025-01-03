@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ProtectedRoute } from './Componets'
 import { ChatProvider } from './Context/ChatContext'
-
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import {
     ChatScreen,

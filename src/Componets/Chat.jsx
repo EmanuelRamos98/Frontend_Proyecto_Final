@@ -2,6 +2,7 @@ import React from 'react'
 import { useMessages } from '../Hooks'
 import { Link, useParams } from 'react-router-dom'
 import './chat.css'
+import Skeleton from 'react-loading-skeleton'
 
 
 const Chat = ({ receiverId }) => {
@@ -11,24 +12,28 @@ const Chat = ({ receiverId }) => {
     return (
         <div>
             {
-                loading_mensajes
-                    ? <span>Cargando...</span>
-                    : (
-                        error_mensajes
-                            ? <span>{error_mensajes}</span>
-                            : <div className='container_mensaje'>
-                                {
-                                    //Mapea sobre os mensajes y los renderiza mediante el componente Mensaje
-                                    mensajes.map(
-                                        (mensaje) => {
-                                            return (
-                                                <Mensaje mensaje={mensaje} key={mensaje._id} receiverId={receiverId} />
-                                            )
-                                        }
-                                    )
-                                }
-                            </div>
-                    )
+                loading_mensajes 
+                ? <div className='container_mensaje'>
+                    {(() => {
+                        const skeleton = []
+                        for (let i = 0; i < 5; i++) {
+                            skeleton.push(<MensajeSkeleton key={i} />)
+                        }
+                        return skeleton
+                    })()}
+                </div>
+                : <div className='container_mensaje'>
+                    {
+                        //Mapea sobre os mensajes y los renderiza mediante el componente Mensaje
+                        mensajes.map(
+                            (mensaje) => {
+                                return (
+                                    <Mensaje mensaje={mensaje} key={mensaje._id} receiverId={receiverId} />
+                                )
+                            }
+                        )
+                    }
+                </div>
             }
         </div >
     )
@@ -66,6 +71,15 @@ const FormatDate = ({ isoDate }) => {
             <p>{day} {time}</p>
         </>
 
+    )
+}
+
+
+const MensajeSkeleton = () => {
+    return (
+        <div className='mensaje_container mensaje_skeleton'>
+            <p className='chat_text'><Skeleton width={150} style={{ opacity: 0.5 }} /></p>
+        </div>
     )
 }
 

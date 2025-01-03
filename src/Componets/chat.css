@@ -8,6 +8,8 @@
     overflow-y: auto;
     color: var(--color-fuente-home)
 }
+
+
 .container_mensaje::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -36,7 +38,7 @@
     margin: 10px 15px;
 }
 
-.mensaje p{
+.mensaje p {
     margin: 0;
 }
 
@@ -56,3 +58,17 @@
     font-size: 1rem;
     gap: 10px;
 }
+
+/* estilo de los mensajes skeleton */
+.mensaje_skeleton {
+    width: 100%;
+    max-width: 200px;
+    padding: 20px;
+}
+.mensaje_skeleton:nth-child(odd){
+    align-self: flex-start;
+}
+.mensaje_skeleton:nth-child(even){
+    align-self: flex-end;
+}
+/*  */

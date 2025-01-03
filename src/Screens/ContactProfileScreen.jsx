@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useContactProfile, usePerfil } from '../Hooks'
 import { useChat } from '../Context/ChatContext'
 import { MdModeEditOutline } from "react-icons/md"
+import Skeleton from 'react-loading-skeleton'
 import './profileCard.css'
-
 
 const ContactProfileScreen = ({ userProfile, onEdit }) => {
     const { perfil, loading_perfil, error_perfil } = usePerfil() //Obtiene los datos del perfil del usuario
@@ -15,7 +15,7 @@ const ContactProfileScreen = ({ userProfile, onEdit }) => {
             <div>
                 {
                     loading_perfil
-                        ? <span>Catgando ...</span>
+                        ? <span><ProfileCardSkeleton /></span>
                         : (
                             error_perfil
                                 ? <span>{error_perfil}</span>
@@ -42,7 +42,7 @@ const ContactProfileScreen = ({ userProfile, onEdit }) => {
         <div>
             {
                 loading_contacto_profile
-                    ? <span>Catgando ...</span>
+                    ? <span><ProfileCardSkeleton /></span>
                     : (
                         error_contacto_profile
                             ? <span>{error_contacto_profile}</span>
@@ -75,6 +75,19 @@ const ProfileCard = ({ name, estado, email, img, onEdit }) => {
                 onEdit &&
                 <button onClick={onEdit} className='btn_profile_card'> Editar perfil <MdModeEditOutline /></button>
             }
+        </div>
+    )
+}
+
+const ProfileCardSkeleton = () => {
+    return (
+        <div className='container_card_profile'>
+            <span className='img_profile_card'><Skeleton circle height={140} width={140} /></span>
+            <div className='container_data_profile_card'>
+                <h2 className='name_profile_card'><Skeleton width={200} /></h2>
+                <p className='estado_profile_card'><Skeleton width={200} /></p>
+                <p className='email_profile_card'><Skeleton width={200} /></p>
+            </div>
         </div>
     )
 }

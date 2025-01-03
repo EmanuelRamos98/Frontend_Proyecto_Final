@@ -6,12 +6,15 @@
     gap: 10px;
 }
 
-.img_profile_card, .img_update_profile{
+
+
+.img_profile_card,
+.img_update_profile {
     width: 140px;
     border-radius: 10px;
 }
 
-.container_data_profile_card{
+.container_data_profile_card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +38,9 @@
     text-align: center;
 }
 
-.btn_profile_card, .btn_update_profile, .label_input_img{
+.btn_profile_card,
+.btn_update_profile,
+.label_input_img {
     border: none;
     background-color: var(--color-primary);
     display: flex;
