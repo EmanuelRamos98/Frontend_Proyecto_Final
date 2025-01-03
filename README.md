@@ -13,7 +13,7 @@ El proyecto utiliza las siguientes librerías y herramientas:
 - **React Icons**: Conjunto de iconos para interfaces.
 - **React Router DOM**: Manejo de rutas en aplicaciones React.
 - **Router DOM**: Soporte para navegación.
-
+- **React Loading Skeleton: Estados de carga
 ---
 
 ## 🎯 Funcionalidades Principales
