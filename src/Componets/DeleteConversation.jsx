@@ -4,7 +4,7 @@ import { getAuthenticatedHeaders } from '../Utils/feching.js'
 
 const DeleteConversation = ({ receiverId }) => {
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:3000/api/message/delete-conversation/${receiverId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/message/delete-conversation/${receiverId}`, {
             method: 'DELETE',
             headers: getAuthenticatedHeaders()
         })
