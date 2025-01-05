@@ -6,7 +6,7 @@ import Chat from "./Chat";
 import EnviarMessage from "./EnviarMessage";
 import Navbar from "./Navbar";
 import ModalProfileContac from "./ModalProfileContac";
-
+import DeleteConversation from "./DeleteConversation";
 
 export {
     ProtectedRoute,
@@ -16,5 +16,6 @@ export {
     Chat,
     EnviarMessage,
     Navbar,
-    ModalProfileContac
+    ModalProfileContac,
+    DeleteConversation
 }
